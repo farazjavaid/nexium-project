@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Nexium
 
 A modern, responsive web application built with Next.js showcasing premium web development services. This project demonstrates advanced React patterns, smooth animations, and a custom carousel implementation.
@@ -201,3 +202,7 @@ This project is open source and available under the [MIT License](LICENSE).
 ---
 
 Made with ❤️ using Next.js and TypeScript
+=======
+# nexium-project
+A modern, responsive Next.js website showcasing web development services with an animated carousel, built using React 19,   TypeScript, and Tailwind CSS
+>>>>>>> 88542b4c0f35b78cc1e015260e08d29a78c5b56c
