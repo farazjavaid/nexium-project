@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 
 interface NavbarProps {
   isScrolled?: boolean;
+  whiteMenu?: boolean;
 }
 
 const menuItems = [
@@ -14,7 +15,7 @@ const menuItems = [
   { name: "Contact Us", href: "/contact-us" },
 ];
 
-export default function Navbar({ isScrolled = false }: NavbarProps) {
+export default function Navbar({ isScrolled = false, whiteMenu = false }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
@@ -28,6 +29,8 @@ export default function Navbar({ isScrolled = false }: NavbarProps) {
     }
   };
 
+  const hamburgerColor = whiteMenu ? "bg-white" : "bg-[#353638]";
+
   return (
     <>
       {/* Hamburger Button */}
@@ -37,17 +40,17 @@ export default function Navbar({ isScrolled = false }: NavbarProps) {
         aria-label="Toggle menu"
       >
         <span
-          className={`w-full h-0.5 bg-[#353638] transition-all duration-300 ease-in-out ${
+          className={`w-full h-0.5 ${hamburgerColor} transition-all duration-300 ease-in-out ${
             isOpen ? "rotate-45 translate-y-2" : ""
           }`}
         ></span>
         <span
-          className={`w-full h-0.5 bg-[#353638] transition-all duration-300 ease-in-out ${
+          className={`w-full h-0.5 ${hamburgerColor} transition-all duration-300 ease-in-out ${
             isOpen ? "opacity-0" : "opacity-100"
           }`}
         ></span>
         <span
-          className={`w-full h-0.5 bg-[#353638] transition-all duration-300 ease-in-out ${
+          className={`w-full h-0.5 ${hamburgerColor} transition-all duration-300 ease-in-out ${
             isOpen ? "-rotate-45 -translate-y-2" : ""
           }`}
         ></span>

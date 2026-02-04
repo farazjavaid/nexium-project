@@ -32,7 +32,7 @@ export default function HeroSection({
   };
 
   return (
-    <section className="w-full pt-48 pb-30 lg:pt-54 px-6 lg:px-20 bg-white relative overflow-hidden">
+    <section className="w-full min-h-screen flex items-center px-6 lg:px-20 bg-white relative overflow-hidden">
       {showBackgroundImage && (
         <div className="absolute left-[-5%] lg:left-[13%] top-[15%] w-[300px] h-[300px] lg:w-[474px] lg:h-[474px] pointer-events-none z-0 rotate-[17deg]">
           <Image
@@ -44,7 +44,7 @@ export default function HeroSection({
         </div>
       )}
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10 py-32 w-full">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-9">
             <h1 className="text-[48px] sm:text-[60px] lg:text-[78px] xl:text-[88px] leading-[1.05] tracking-tight text-[#353638] font-light">

@@ -11,9 +11,10 @@ const imgLogoWhite = "/images/contact-us/logo-white.png";
 interface HeaderProps {
   transparent?: boolean;
   whiteLogo?: boolean;
+  whiteMenu?: boolean;
 }
 
-export default function Header({ transparent = false, whiteLogo = false }: HeaderProps) {
+export default function Header({ transparent = false, whiteLogo = false, whiteMenu = false }: HeaderProps) {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -62,7 +63,7 @@ export default function Header({ transparent = false, whiteLogo = false }: Heade
             | {getPageTitle()}
           </p>
         </div>
-        <Navbar isScrolled={isScrolled} />
+        <Navbar isScrolled={isScrolled} whiteMenu={whiteMenu} />
       </div>
     </header>
   );
