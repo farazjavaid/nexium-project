@@ -7,6 +7,7 @@ import ClientLogosSection from "@/components/ClientLogosSection";
 import OutgrownSection from "@/components/OutgrownSection";
 import PremiumSolutionsSection from "@/components/PremiumSolutionsSection";
 import WhyChooseUsSection from "@/components/WhyChooseUsSection";
+import ProjectShowcaseSection from "@/components/ProjectShowcaseSection";
 import ContactFormSection from "@/components/ContactFormSection";
 import TestimonialSection from "@/components/TestimonialSection";
 import TeamCTASection from "@/components/TeamCTASection";
@@ -15,11 +16,11 @@ import Footer from "@/components/Footer";
 export default function Home() {
   const [heroSlide, setHeroSlide] = useState(0);
   const clientLogos = [
-    "/images/about-us/client-logo-1.png",
-    "/images/about-us/client-logo-2.png",
+    "/images/about-us/client-logo-1.svg",
+    "/images/about-us/client-logo-2.svg",
     "/images/about-us/client-logo-3.png",
-    "/images/about-us/client-logo-5.png",
-    "/images/about-us/client-logo-6.png",
+    "/images/about-us/client-logo-5.svg",
+    "/images/about-us/client-logo-6.svg",
   ];
 
   return (
@@ -50,6 +51,8 @@ export default function Home() {
       <PremiumSolutionsSection />
 
       <WhyChooseUsSection />
+
+      <ProjectShowcaseSection />
 
       <TestimonialSection />
 

@@ -73,9 +73,20 @@ export default function TestimonialSection({
   return (
     <section className="w-full py-16 lg:py-24 px-4 lg:px-20 bg-white">
       <div className="max-w-7xl mx-auto">
-        <div className="max-w-[1228px] mx-auto">
+        <div className="max-w-[1228px] mx-auto relative">
+          <span
+            className="text-[#353638] absolute top-0 left-0 pb-4"
+            style={{
+              fontSize: "20px",
+              fontFamily: "system-ui, -apple-system, 'Segoe UI', sans-serif",
+              fontStyle: "italic",
+            }}
+          >
+            {String(currentIndex + 1).padStart(2, "0")}/{String(testimonials.length).padStart(2, "0")}
+          </span>
+
           <blockquote
-            className="text-[#353638] text-center mb-12"
+            className="text-[#353638] text-start mb-12 pt-12"
             style={{
               fontSize: "56px",
               lineHeight: "64px",
@@ -85,80 +96,71 @@ export default function TestimonialSection({
             &ldquo;{currentTestimonial.quote}&rdquo;
           </blockquote>
 
-          <div className="text-center mb-8">
-            <p
-              className="text-[#353638] mb-2"
-              style={{
-                fontSize: "26px",
-                fontFamily: "'Josefin Sans', sans-serif",
-                lineHeight: "64px",
-                letterSpacing: "-0.52px",
-              }}
-            >
-              {currentTestimonial.author}
-            </p>
-            <p
-              className="text-[#353638]/60"
-              style={{
-                fontSize: "18px",
-                fontFamily: "system-ui, -apple-system, 'Segoe UI', sans-serif",
-              }}
-            >
-              /{currentTestimonial.title}
-            </p>
-          </div>
-
-          <div className="flex items-center justify-center gap-6">
-            <button
-              onClick={handlePrevious}
-              className="w-[51px] h-[33px] bg-white border border-[#353638]/50 hover:bg-[#267275] hover:border-[#267275] flex items-center justify-center transition-all duration-300 group"
-              aria-label="Previous testimonial"
-            >
-              <svg
-                className="w-4 h-4 text-[#353638] group-hover:text-white transition-colors"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+          <div className="flex items-center justify-between mb-8">
+            <div className="text-start">
+              <p
+                className="text-[#353638]"
+                style={{
+                  fontSize: "26px",
+                  fontFamily: "'Josefin Sans', sans-serif",
+                  lineHeight: "40px",
+                  letterSpacing: "-0.52px",
+                }}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-            </button>
-
-            <span
-              className="text-[#353638]"
-              style={{
-                fontSize: "20px",
-                fontFamily: "system-ui, -apple-system, 'Segoe UI', sans-serif",
-                fontStyle: "italic",
-              }}
-            >
-              {String(currentIndex + 1).padStart(2, "0")}/{String(testimonials.length).padStart(2, "0")}
-            </span>
-
-            <button
-              onClick={handleNext}
-              className="w-[51px] h-[33px] bg-white border border-[#353638]/50 hover:bg-[#267275] hover:border-[#267275] flex items-center justify-center transition-all duration-300 group"
-              aria-label="Next testimonial"
-            >
-              <svg
-                className="w-4 h-4 text-[#353638] group-hover:text-white transition-colors"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+                {currentTestimonial.author}
+              </p>
+              <p
+                className="text-[#353638]/60"
+                style={{
+                  fontSize: "18px",
+                  fontFamily: "system-ui, -apple-system, 'Segoe UI', sans-serif",
+                }}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </button>
+                /{currentTestimonial.title}
+              </p>
+            </div>
+
+            <div className="flex items-center gap-6">
+              <button
+                onClick={handlePrevious}
+                className="w-[51px] h-[33px] bg-white border border-[#353638]/50 hover:bg-[#267275] hover:border-[#267275] flex items-center justify-center transition-all duration-300 group"
+                aria-label="Previous testimonial"
+              >
+                <svg
+                  className="w-4 h-4 text-[#353638] group-hover:text-white transition-colors"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+              </button>
+
+              <button
+                onClick={handleNext}
+                className="w-[51px] h-[33px] bg-white border border-[#353638]/50 hover:bg-[#267275] hover:border-[#267275] flex items-center justify-center transition-all duration-300 group"
+                aria-label="Next testimonial"
+              >
+                <svg
+                  className="w-4 h-4 text-[#353638] group-hover:text-white transition-colors"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>

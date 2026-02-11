@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Nexium
 
 A modern, responsive web application built with Next.js showcasing premium web development services. This project demonstrates advanced React patterns, smooth animations, and a custom carousel implementation.
@@ -29,6 +28,7 @@ Nexium is a professional service showcase website that highlights custom web dev
 
 ### Components & Libraries
 - **Embla Carousel React 8.6.0** - Lightweight carousel library for smooth animations
+- **Framer Motion 12.30.0** - Animation library for React
 
 ### Development Tools
 - **ESLint** - Code linting and quality assurance
@@ -40,6 +40,7 @@ Nexium is a professional service showcase website that highlights custom web dev
 - **About Us** (`/about-us`) - Company information and team details
 - **Our Services** (`/our-services`) - Interactive service carousel showcasing offerings
 - **Contact Us** (`/contact-us`) - Contact form and company information
+- **Login** (`/login`) - User authentication page
 
 ## Getting Started
 
@@ -53,8 +54,8 @@ Make sure you have the following installed on your system:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/nexium.git
-cd nexium
+git clone https://github.com/farazjavaid/nexium-project.git
+cd nexium-project
 ```
 
 2. Install dependencies:
@@ -113,6 +114,7 @@ nexium/
 ├── app/                      # Next.js app directory
 │   ├── about-us/            # About us page
 │   ├── contact-us/          # Contact page
+│   ├── login/               # Login page
 │   ├── our-services/        # Services page with carousel
 │   ├── layout.tsx           # Root layout
 │   ├── page.tsx             # Home page
@@ -122,6 +124,10 @@ nexium/
 │   ├── Footer.tsx          # Footer component
 │   ├── Navbar.tsx          # Navigation bar
 │   ├── HeroSection.tsx     # Hero section component
+│   ├── LoginForm.tsx       # Login form component
+│   ├── ProjectShowcaseSection.tsx  # Project showcase
+│   ├── TestimonialSection.tsx     # Testimonials
+│   ├── WhyChooseUsSection.tsx     # Why choose us section
 │   ├── WhatWeBuildSection.tsx    # Animated services carousel
 │   ├── ServicesCarousel.tsx      # Services carousel
 │   ├── TeamCTASection.tsx        # Team CTA section
@@ -129,6 +135,8 @@ nexium/
 │   └── ClientLogosSection.tsx    # Client logos display
 ├── public/                  # Static files
 │   └── images/             # Image assets
+│       ├── about-us/       # About page images
+│       └── projects/       # Project showcase images
 ├── .claude/                # Claude Code settings
 ├── package.json            # Dependencies and scripts
 ├── tsconfig.json           # TypeScript configuration
@@ -145,6 +153,12 @@ Custom-built service carousel featuring:
 - Scale and opacity transitions
 - Responsive navigation arrows
 - Dynamic content rendering
+
+### ProjectShowcaseSection
+Project portfolio display with interactive elements
+
+### TestimonialSection
+Client testimonials with animated transitions
 
 ## Customization
 
@@ -187,22 +201,17 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## Author
 
-**Faraz**
+**Faraz Javaid**
 
-- Portfolio: [Your Portfolio URL]
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
+- GitHub: [@farazjavaid](https://github.com/farazjavaid)
 
 ## Acknowledgments
 
 - Next.js team for the amazing framework
 - Tailwind CSS for the utility-first CSS framework
 - Embla Carousel for the carousel functionality
+- Framer Motion for smooth animations
 
 ---
 
-Made with ❤️ using Next.js and TypeScript
-=======
-# nexium-project
-A modern, responsive Next.js website showcasing web development services with an animated carousel, built using React 19,   TypeScript, and Tailwind CSS
->>>>>>> 88542b4c0f35b78cc1e015260e08d29a78c5b56c
+Made with Next.js and TypeScript

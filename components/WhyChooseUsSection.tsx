@@ -48,7 +48,6 @@ export default function WhyChooseUsSection({
   return (
     <section className="w-full py-16 lg:py-24 px-4 lg:px-20 bg-[#1f1f1f] relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Section Heading */}
         <h2
           className="mb-12 lg:mb-16 font-montserrat uppercase"
           style={{
@@ -63,7 +62,6 @@ export default function WhyChooseUsSection({
           Why clients<br />choose us
         </h2>
 
-        {/* Features Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {features.map((feature, index) => (
             <div
