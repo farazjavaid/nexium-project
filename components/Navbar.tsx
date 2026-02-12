@@ -10,6 +10,7 @@ interface NavbarProps {
 }
 
 const menuItems = [
+  { name: "Home", href: "/" },
   { name: "About Us", href: "/about-us" },
   { name: "Our Services", href: "/our-services" },
   { name: "Contact Us", href: "/contact-us" },
@@ -28,7 +29,7 @@ export default function Navbar({ isScrolled = false, whiteMenu = false }: Navbar
     }
   };
 
-  const hamburgerColor = whiteMenu ? "bg-white" : "bg-[#353638]";
+  const hamburgerColor = isScrolled ? "bg-[#353638]" : (whiteMenu ? "bg-white" : "bg-[#353638]");
 
   return (
     <>

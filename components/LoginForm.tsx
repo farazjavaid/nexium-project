@@ -2,15 +2,35 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { authService } from "@/lib/auth";
 
 export default function LoginForm() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ email, password, rememberMe });
+    setError("");
+    setLoading(true);
+
+    try {
+      const success = await authService.login(email, password);
+
+      if (success) {
+        router.push("/admin");
+      } else {
+        setError("Invalid email or password");
+      }
+    } catch (err) {
+      setError("Login failed. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -19,11 +39,23 @@ export default function LoginForm() {
         <h2 className="text-3xl font-bold text-[#353638] mb-2 text-center">
           Welcome Back
         </h2>
-        <p className="text-gray-600 text-center mb-8">
+        <p className="text-gray-600 text-center mb-6">
           Sign in to continue to Nexium
         </p>
 
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+          <p className="text-sm text-blue-800 font-medium mb-1">Demo Credentials:</p>
+          <p className="text-sm text-blue-600">Email: admin@nexium.com</p>
+          <p className="text-sm text-blue-600">Password: admin123</p>
+        </div>
+
         <form onSubmit={handleSubmit} className="space-y-6">
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg text-sm">
+              {error}
+            </div>
+          )}
+
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-[#353638] mb-2">
               Email Address
@@ -74,17 +106,15 @@ export default function LoginForm() {
 
           <button
             type="submit"
-            className="w-full bg-[#353638] text-white py-3 px-4 rounded-lg hover:bg-[#2a2729] transition-colors duration-300 font-medium"
+            disabled={loading}
+            className="w-full bg-[#353638] text-white py-3 px-4 rounded-lg hover:bg-[#2a2729] transition-colors duration-300 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Sign In
+            {loading ? "Signing in..." : "Sign In"}
           </button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-gray-600">
-          Don't have an account?{" "}
-          <Link href="/signup" className="text-[#353638] font-medium hover:underline">
-            Sign up
-          </Link>
+        <p className="mt-6 text-center text-sm text-gray-500">
+          Admin Dashboard Access Only
         </p>
       </div>
     </div>

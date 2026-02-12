@@ -70,6 +70,10 @@ export default function TestimonialSection({
 
   const currentTestimonial = testimonials[currentIndex];
 
+  if (!testimonials || testimonials.length === 0 || !currentTestimonial) {
+    return null;
+  }
+
   return (
     <section className="w-full py-16 lg:py-24 px-4 lg:px-20 bg-white">
       <div className="max-w-7xl mx-auto">

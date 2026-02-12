@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import Navbar from "./Navbar";
@@ -53,9 +54,9 @@ export default function Header({ transparent = false, whiteLogo = false, whiteMe
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex items-center gap-6">
-          <div className="relative h-[37px] w-[134px]">
+          <Link href="/" className="relative h-[37px] w-[134px] cursor-pointer">
             <Image alt="Nexium Trio Logo" src={logoSrc} fill className="object-contain" />
-          </div>
+          </Link>
           <p className={`text-base lg:text-xl ${textColor} transition-colors duration-300`}>
             | {getPageTitle()}
           </p>

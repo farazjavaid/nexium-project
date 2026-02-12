@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -5,6 +8,10 @@ import ContactFormSection from "@/components/ContactFormSection";
 import TeamCTASection from "@/components/TeamCTASection";
 import HeroSection from "@/components/HeroSection";
 import ClientLogosSection from "@/components/ClientLogosSection";
+import { clientService } from "@/lib/services/clientService";
+import { Client } from "@/types/admin";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 const imgPolygon3 = "/images/about-us/polygon-3.svg";
 const imgRectangle702 = "/images/about-us/rectangle-702.png";
@@ -14,15 +21,28 @@ const imgTailorBuildsIcon = "/images/about-us/tailor-builds-icon.svg";
 const imgGroup2327 = "/images/about-us/group-2327.svg";
 const imgGroup2328 = "/images/about-us/Group 2328.svg";
 
-const clientLogos = [
-  "/images/about-us/client-logo-1.png",
-  "/images/about-us/client-logo-2.png",
-  "/images/about-us/client-logo-3.png",
-  "/images/about-us/client-logo-5.png",
-  "/images/about-us/client-logo-6.png",
-];
-
 export default function AboutUs() {
+  const [clientLogos, setClientLogos] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchClients = async () => {
+      try {
+        const response = await clientService.getAll();
+
+        const logos = response.data
+          ?.filter((client: Client) => client.is_active)
+          .sort((a: Client, b: Client) => a.display_order - b.display_order)
+          .map((client: Client) => `${API_URL}/storage/${client.logo}`) || [];
+
+        setClientLogos(logos);
+      } catch (error) {
+        console.error("Error fetching clients:", error);
+        setClientLogos([]);
+      }
+    };
+
+    fetchClients();
+  }, []);
   return (
     <div className="bg-white w-full overflow-x-hidden">
       <Header transparent />

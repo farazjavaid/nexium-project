@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import LandingHeroSection from "@/components/LandingHeroSection";
 import ClientLogosSection from "@/components/ClientLogosSection";
@@ -12,16 +12,59 @@ import ContactFormSection from "@/components/ContactFormSection";
 import TestimonialSection from "@/components/TestimonialSection";
 import TeamCTASection from "@/components/TeamCTASection";
 import Footer from "@/components/Footer";
+import { clientService } from "@/lib/services/clientService";
+import { projectService } from "@/lib/services/projectService";
+import { testimonialService } from "@/lib/services/testimonialService";
+import { Client, Project, Testimonial } from "@/types/admin";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 export default function Home() {
   const [heroSlide, setHeroSlide] = useState(0);
-  const clientLogos = [
-    "/images/about-us/client-logo-1.svg",
-    "/images/about-us/client-logo-2.svg",
-    "/images/about-us/client-logo-3.png",
-    "/images/about-us/client-logo-5.svg",
-    "/images/about-us/client-logo-6.svg",
-  ];
+  const [clientLogos, setClientLogos] = useState<string[]>([]);
+  const [projects, setProjects] = useState<any[]>([]);
+  const [testimonials, setTestimonials] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const clientsResponse = await clientService.getAll();
+        const logos = clientsResponse.data
+          ?.filter((client: Client) => client.is_active)
+          .sort((a: Client, b: Client) => a.display_order - b.display_order)
+          .map((client: Client) => `${API_URL}/storage/${client.logo}`) || [];
+        setClientLogos(logos);
+
+        const projectsResponse = await projectService.getAll();
+        const transformedProjects = projectsResponse.data?.map((project: Project) => ({
+          title: project.title,
+          category: project.category,
+          image: `${API_URL}/storage/${project.image}`,
+          bgColor: project.bg_color,
+          link: project.link,
+        })) || [];
+        setProjects(transformedProjects);
+
+        const testimonialsResponse = await testimonialService.getAll();
+        const transformedTestimonials = testimonialsResponse.data
+          ?.filter((testimonial: Testimonial) => testimonial.is_active)
+          .sort((a: Testimonial, b: Testimonial) => a.display_order - b.display_order)
+          .map((testimonial: Testimonial) => ({
+            quote: testimonial.quote,
+            author: testimonial.author,
+            title: testimonial.title,
+          })) || [];
+        setTestimonials(transformedTestimonials);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setClientLogos([]);
+        setProjects([]);
+        setTestimonials([]);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -52,9 +95,9 @@ export default function Home() {
 
       <WhyChooseUsSection />
 
-      <ProjectShowcaseSection />
+      <ProjectShowcaseSection projects={projects} />
 
-      <TestimonialSection />
+      <TestimonialSection testimonials={testimonials} />
 
       <TeamCTASection
         topText="Ready to take the next step?"
