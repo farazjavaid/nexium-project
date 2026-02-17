@@ -1,5 +1,21 @@
 const API_URL = '';
 const TOKEN_STORAGE_KEY = 'nexium_admin_token';
+const BACKEND_URL = 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site/api';
+
+function fixStorageUrl(value: unknown): unknown {
+  if (typeof value === 'string') {
+    return value.replace(/http:\/\/localhost:\d+/g, BACKEND_URL);
+  }
+  if (Array.isArray(value)) {
+    return value.map(fixStorageUrl);
+  }
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(
+      Object.entries(value as Record<string, unknown>).map(([k, v]) => [k, fixStorageUrl(v)])
+    );
+  }
+  return value;
+}
 
 interface ApiResponse<T = any> {
   success: boolean;
@@ -51,7 +67,7 @@ class ApiClient {
         throw error;
       }
 
-      return data;
+      return fixStorageUrl(data) as ApiResponse<T>;
     } catch (error) {
       console.error('API Error:', error);
       throw error;
