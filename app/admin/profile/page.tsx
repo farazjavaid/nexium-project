@@ -7,7 +7,7 @@ import Button from '@/components/admin/FormComponents/Button';
 import FileUpload from '@/components/admin/FormComponents/FileUpload';
 import { profileService, UserProfile } from '@/lib/services/profileService';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site';
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState<UserProfile | null>(null);

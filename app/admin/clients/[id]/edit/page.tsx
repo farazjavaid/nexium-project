@@ -9,7 +9,7 @@ import FileUpload from '@/components/admin/FormComponents/FileUpload';
 import Button from '@/components/admin/FormComponents/Button';
 import { clientService } from '@/lib/services/clientService';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site';
 
 export default function EditClientPage() {
   const router = useRouter();

@@ -17,7 +17,7 @@ import { projectService } from "@/lib/services/projectService";
 import { testimonialService } from "@/lib/services/testimonialService";
 import { Client, Project, Testimonial } from "@/types/admin";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site';
 
 export default function Home() {
   const [heroSlide, setHeroSlide] = useState(0);

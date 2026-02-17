@@ -7,7 +7,7 @@ import { projectService } from '@/lib/services/projectService';
 import { Project } from '@/types/admin';
 import { formatDate } from '@/lib/utils';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site';
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { profileService, UserProfile } from '@/lib/services/profileService';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site';
 
 interface TopBarProps {
   onMenuClick: () => void;
