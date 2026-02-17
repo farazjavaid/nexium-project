@@ -1,6 +1,6 @@
 const API_URL = '';
 const TOKEN_STORAGE_KEY = 'nexium_admin_token';
-const BACKEND_URL = 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site/api';
+const BACKEND_URL = 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site';
 
 function fixStorageUrl(value: unknown): unknown {
   if (typeof value === 'string') {
