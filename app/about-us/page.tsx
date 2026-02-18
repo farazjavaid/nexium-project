@@ -11,7 +11,7 @@ import ClientLogosSection from "@/components/ClientLogosSection";
 import { clientService } from "@/lib/services/clientService";
 import { Client } from "@/types/admin";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site/api';
 
 const imgPolygon3 = "/images/about-us/polygon-3.svg";
 const imgRectangle702 = "/images/about-us/rectangle-702.png";

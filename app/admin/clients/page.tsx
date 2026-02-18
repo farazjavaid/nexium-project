@@ -7,7 +7,7 @@ import { clientService } from '@/lib/services/clientService';
 import { Client } from '@/types/admin';
 import { formatDate } from '@/lib/utils';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site/api';
 
 export default function ClientsPage() {
   const [clients, setClients] = useState<Client[]>([]);

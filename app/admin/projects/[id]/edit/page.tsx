@@ -10,7 +10,7 @@ import ColorPicker from '@/components/admin/FormComponents/ColorPicker';
 import Button from '@/components/admin/FormComponents/Button';
 import { projectService } from '@/lib/services/projectService';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site/api';
 
 export default function EditProjectPage() {
   const router = useRouter();
