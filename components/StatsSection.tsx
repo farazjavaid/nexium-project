@@ -34,13 +34,12 @@ export default function StatsSection({ stats = defaultStats }: StatsSectionProps
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="flex flex-col items-start justify-center h-[182px] px-8"
+              className="flex flex-col items-start justify-center min-h-[140px] lg:h-[182px] px-8 py-6 lg:py-0"
               style={{ backgroundColor: stat.backgroundColor }}
             >
               <h3
-                className="text-[#353638] font-bold mb-3"
+                className="text-[40px] lg:text-[60px] text-[#353638] font-bold mb-2 lg:mb-3"
                 style={{
-                  fontSize: "60px",
                   fontFamily: "system-ui, -apple-system, 'Segoe UI', sans-serif",
                   letterSpacing: "-1.8px",
                   lineHeight: "1",
@@ -53,7 +52,7 @@ export default function StatsSection({ stats = defaultStats }: StatsSectionProps
                 style={{
                   fontSize: "20px",
                   letterSpacing: "-0.32px",
-                  lineHeight: "2.3",
+                  lineHeight: "1.6",
                 }}
               >
                 {stat.description}
