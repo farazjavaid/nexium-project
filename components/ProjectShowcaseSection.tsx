@@ -48,14 +48,7 @@ export default function ProjectShowcaseSection({
     <section className="w-full py-16 lg:py-24 px-4 lg:px-20 bg-white">
       <div className="max-w-7xl mx-auto">
         <h2
-          className="text-center mb-12 lg:mb-16 uppercase"
-          style={{
-            fontSize: "48px",
-            lineHeight: "60px",
-            letterSpacing: "0.5px",
-            color: "#252525",
-            fontWeight: 300,
-          }}
+          className="text-[28px] lg:text-[48px] leading-tight lg:leading-[60px] tracking-[0.5px] text-[#252525] font-light text-center mb-12 lg:mb-16 uppercase"
         >
           SEE WHAT WE HAVE BUILT
         </h2>
@@ -72,14 +65,13 @@ export default function ProjectShowcaseSection({
             return (
             <div
               key={index}
-              className={`relative group overflow-hidden cursor-pointer transition-transform duration-300 hover:scale-[1.02] ${colSpan}`}
+              className={`relative group overflow-hidden cursor-pointer transition-transform duration-300 hover:scale-[1.02] min-h-[300px] lg:min-h-[400px] ${colSpan}`}
               style={{
                 backgroundColor: project.bgColor,
-                minHeight: "400px",
               }}
             >
               <div className="relative w-full h-full p-8 lg:p-12 flex flex-col justify-between">
-                <div className="relative w-full h-[280px] mb-6">
+                <div className="relative w-full h-[200px] lg:h-[280px] mb-6">
                   <Image
                     src={project.image}
                     alt={project.title}
