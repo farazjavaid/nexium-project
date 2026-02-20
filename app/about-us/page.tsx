@@ -63,12 +63,12 @@ export default function AboutUs() {
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-3xl lg:text-5xl text-[#353638] font-normal uppercase mb-6">
+              <h2 className="text-3xl lg:text-5xl text-[#353638] font-montserrat font-normal uppercase mb-6">
                 Collaborative<br />by design
               </h2>
             </div>
             <div>
-              <p className="text-[#727272] text-base lg:text-lg leading-relaxed">
+              <p className="text-[#727272] font-montserrat text-base lg:text-lg leading-relaxed">
                 Every project is different, and so is our approach. From initial scoping to post-launch support, we shape every solution around your business, bringing your vision to life.
               </p>
             </div>
@@ -82,32 +82,32 @@ export default function AboutUs() {
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
-          <h2 className="text-3xl lg:text-[48px] text-white font-normal uppercase mb-12 lg:mb-16">
+          <h2 className="text-3xl lg:text-[48px] text-white font-montserrat font-normal uppercase mb-12 lg:mb-16">
             Our Values
           </h2>
           <div className="grid md:grid-cols-2 gap-8 lg:gap-16 mb-12">
             <div>
-              <h3 className="text-[20px] text-white font-bold uppercase mb-4 tracking-wide">
+              <h3 className="text-[20px] text-white font-montserrat font-bold uppercase mb-4 tracking-wide">
                 Innovation with Purpose
               </h3>
-              <p className="text-white text-[17px] leading-[26px] opacity-90">
-                We build solutions that solve real-world<br />problems and deliver measurable impact for<br /> your business.
+              <p className="text-white font-montserrat text-[17px] leading-[26px] opacity-90">
+                We build solutions that solve real-world problems and deliver measurable impact for your business.
               </p>
             </div>
             <div>
-              <h3 className="text-[20px] text-white font-bold uppercase mb-4 tracking-wide">
+              <h3 className="text-[20px] text-white font-montserrat font-bold uppercase mb-4 tracking-wide">
                 Across the Details
               </h3>
-              <p className="text-white text-[17px] leading-[26px] opacity-90">
+              <p className="text-white font-montserrat text-[17px] leading-[26px] opacity-90">
                 From responsive design to backend<br />architecture, we understand everything it<br />takes to make your digital experience fast,<br />reliable, and built to scale.
               </p>
             </div>
           </div>
           <div className="max-w-full">
-            <h3 className="text-[20px] text-white font-bold uppercase mb-4 tracking-wide">
+            <h3 className="text-[20px] text-white font-montserrat font-bold uppercase mb-4 tracking-wide">
               Client Collaboration
             </h3>
-            <p className="text-white text-[17px] leading-[26px] opacity-90 max-w-5xl">
+            <p className="text-white font-montserrat text-[17px] leading-[26px] opacity-90 max-w-5xl">
               You&apos;ll work directly with the technical experts who are delivering your project. Working with us feels more like <br />collaborating with a partner than an agency.
             </p>
           </div>
@@ -116,7 +116,7 @@ export default function AboutUs() {
 
       <section className="w-full py-16 lg:py-24 px-4 lg:px-20 bg-[#eee]">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-[48px] lg:text-[78px] leading-[80px] text-[#252525] font-light uppercase mb-12 lg:mb-20">
+          <h2 className="text-[32px] lg:text-[78px] leading-tight lg:leading-[80px] text-[#252525] font-montserrat font-light uppercase mb-12 lg:mb-20">
             Why clients<br />choose us
           </h2>
 
@@ -126,10 +126,10 @@ export default function AboutUs() {
                 <Image alt="" src={imgTailorBuildsIcon} fill className="object-contain" />
               </div>
               <div className="flex-1">
-                <h3 className="text-[18px] text-[#252525] font-bold uppercase mb-4 leading-[36px]">
+                <h3 className="text-[18px] text-[#252525] font-montserrat font-bold uppercase mb-4 leading-[36px]">
                   Tailored Builds
                 </h3>
-                <p className="text-[#727272] text-[17px] leading-[26px]">
+                <p className="text-[#727272] font-montserrat text-[17px] leading-[26px]">
                   We don&apos;t start with templates. We start<br />with your vision, tailoring the solution to<br />your business needs.
                 </p>
               </div>
@@ -140,10 +140,10 @@ export default function AboutUs() {
                 <Image alt="" src={imgGroup2307} fill className="object-contain" />
               </div>
               <div className="flex-1">
-              <h3 className="text-[18px] text-[#252525] font-bold uppercase mb-4 leading-[36px]">
+              <h3 className="text-[18px] text-[#252525] font-montserrat font-bold uppercase mb-4 leading-[36px]">
                 Always Full-Stack
               </h3>
-              <p className="text-[#727272] text-[17px] leading-[26px]">
+              <p className="text-[#727272] font-montserrat text-[17px] leading-[26px]">
                 From backend architecture to front-end<br />design, we build fast, using the tools that<br />suit your project best.
               </p>
               </div>
@@ -154,10 +154,10 @@ export default function AboutUs() {
                 <Image alt="" src={imgGroup} fill className="object-contain" />
               </div>
               <div className="flex-1">
-              <h3 className="text-[18px] text-[#252525] font-bold uppercase mb-4 leading-[36px]">
+              <h3 className="text-[18px] text-[#252525] font-montserrat font-bold uppercase mb-4 leading-[36px]">
                 Like Having An Extra Team Member
               </h3>
-              <p className="text-[#727272] text-[17px] leading-[26px]">
+              <p className="text-[#727272] font-montserrat text-[17px] leading-[26px]">
                 You&apos;ll work directly with the trio behind<br />the name. No account managers or<br />middlemen - just clear, honest<br />communication.
               </p>
               </div>
@@ -168,10 +168,10 @@ export default function AboutUs() {
                 <Image alt="Fast Delivery" src={imgGroup2327} fill className="object-contain" />
               </div>
               <div className="flex-1">
-              <h3 className="text-[18px] text-[#252525] font-bold uppercase mb-4 leading-[36px]">
+              <h3 className="text-[18px] text-[#252525] font-montserrat font-bold uppercase mb-4 leading-[36px]">
                 Fast Delivery
               </h3>
-              <p className="text-[#727272] text-[17px] leading-[26px]">
+              <p className="text-[#727272] font-montserrat text-[17px] leading-[26px]">
                 You&apos;ll work with the people who are<br />delivering your product.
               </p>
               </div>
@@ -182,10 +182,10 @@ export default function AboutUs() {
                 <Image alt="Scalable and Secure" src={imgGroup2328} fill className="object-contain" />
               </div>
               <div className="flex-1">
-              <h3 className="text-[18px] text-[#252525] font-bold uppercase mb-4 leading-[36px]">
+              <h3 className="text-[18px] text-[#252525] font-montserrat font-bold uppercase mb-4 leading-[36px]">
                 Scalable and Secure
               </h3>
-              <p className="text-[#727272] text-[17px] leading-[26px]">
+              <p className="text-[#727272] font-montserrat text-[17px] leading-[26px]">
                 We build robust systems that can scale<br />with your business and adapt as you grow.
               </p>
               </div>

@@ -16,7 +16,7 @@ export default function ClientLogosSection({
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center">
           <div className="flex-shrink-0 pr-8">
-            <p className="text-white text-[17px] whitespace-nowrap">{title}</p>
+            <p className="text-white font-montserrat text-[17px] whitespace-nowrap">{title}</p>
           </div>
 
           <div className="flex-1 relative overflow-hidden">

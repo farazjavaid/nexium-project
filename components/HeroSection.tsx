@@ -44,15 +44,15 @@ export default function HeroSection({
         </div>
       )}
 
-      <div className="max-w-7xl mx-auto relative z-10 py-32 w-full">
+      <div className="max-w-7xl mx-auto relative z-10 py-24 lg:py-32 w-full">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-9">
-            <h1 className="text-[48px] sm:text-[60px] lg:text-[78px] xl:text-[88px] leading-[1.05] tracking-tight text-[#353638] font-montserrat font-light">
+            <h1 className="text-[32px] sm:text-[48px] lg:text-[78px] xl:text-[88px] leading-[1.05] tracking-tight text-[#353638] font-montserrat font-light">
               {heading}
             </h1>
           </div>
           <div className="lg:col-span-8">
-            <p className="text-[#727272] text-[16px] lg:text-[17px] leading-[1.75] font-normal max-w-[750px] mb-0">
+            <p className="text-[#727272] font-montserrat text-[16px] lg:text-[17px] leading-[1.75] font-normal max-w-[750px] mb-0">
               {description}
             </p>
           </div>
