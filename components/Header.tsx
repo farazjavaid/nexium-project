@@ -44,12 +44,12 @@ export default function Header({ transparent = false, whiteLogo = false, whiteMe
 
   return (
     <header
-      className={`w-full py-8 px-4 lg:px-20 transition-all duration-300 ${
+      className={`w-full py-4 lg:py-8 px-4 lg:px-20 fixed top-0 left-0 right-0 z-[60] transition-all duration-300 ${
         isScrolled
-          ? 'fixed top-0 left-0 right-0 z-[60] bg-white shadow-md'
+          ? 'bg-white shadow-md'
           : transparent
-            ? 'absolute top-0 left-0 right-0 z-[60]'
-            : 'bg-white z-[60] relative'
+            ? 'bg-transparent'
+            : 'bg-white'
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -57,7 +57,7 @@ export default function Header({ transparent = false, whiteLogo = false, whiteMe
           <Link href="/" className="relative h-[37px] w-[134px] cursor-pointer">
             <Image alt="Nexium Trio Logo" src={logoSrc} fill className="object-contain" />
           </Link>
-          <p className={`text-base lg:text-xl ${textColor} transition-colors duration-300`}>
+          <p className={`hidden sm:block text-base lg:text-xl ${textColor} transition-colors duration-300`}>
             | {getPageTitle()}
           </p>
         </div>

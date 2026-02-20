@@ -56,7 +56,7 @@ export default function Navbar({ isScrolled = false, whiteMenu = false }: Navbar
       </button>
 
       <div
-        className={`fixed top-[100px] lg:top-[110px] left-0 right-0 bottom-0 bg-white z-50 transition-all duration-500 ease-in-out ${
+        className={`fixed top-[69px] lg:top-[101px] left-0 right-0 bottom-0 bg-white z-50 transition-all duration-500 ease-in-out ${
           isOpen
             ? "opacity-100 visible"
             : "opacity-0 invisible"
