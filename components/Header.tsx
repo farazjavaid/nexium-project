@@ -44,7 +44,7 @@ export default function Header({ transparent = false, whiteLogo = false, whiteMe
 
   return (
     <header
-      className={`w-full py-4 lg:py-8 px-4 lg:px-20 fixed top-0 left-0 right-0 z-[60] transition-all duration-300 ${
+      className={`py-4 lg:py-8 px-4 lg:px-20 fixed top-0 left-0 right-0 z-[60] transition-all duration-300 ${
         isScrolled
           ? 'bg-white shadow-md'
           : transparent

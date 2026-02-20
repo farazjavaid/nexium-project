@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Montserrat, Josefin_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -42,6 +42,11 @@ const monaSans = localFont({
   ],
   variable: "--font-mona-sans",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   title: "Nexium Trio - Digital Solutions That Drive Business",
