@@ -31,7 +31,7 @@ export default function TeamCTASection({
         <div className="flex flex-col lg:flex-row items-center justify-between bg-[#267275] gap-8 px-8 lg:px-16 py-12 lg:py-16">
           <div className="text-center lg:text-left w-full lg:w-auto">
             {topText && (
-              <p className="text-white font-montserrat text-xl mb-4">{topText}</p>
+              <p className="text-white font-montserrat font-normal text-[22px] tracking-[-0.44px] mb-4">{topText}</p>
             )}
             <h2 className="text-xl sm:text-2xl lg:text-[48px] leading-tight lg:leading-[53px] text-white font-montserrat font-semibold uppercase max-w-3xl lg:max-w-[640px]">
               {heading}
