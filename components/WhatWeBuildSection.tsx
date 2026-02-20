@@ -88,8 +88,8 @@ export default function WhatWeBuildSection({ services }: WhatWeBuildSectionProps
 
   return (
     <section className="w-full py-16 lg:py-24 bg-[#eee]">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-[48px] lg:text-[78px] leading-[80px] text-[#252525] font-montserrat font-light uppercase mb-12 lg:mb-20">
+      <div className="max-w-7xl mx-auto px-4 lg:px-20">
+        <h2 className="text-[32px] sm:text-[40px] lg:text-[78px] leading-tight lg:leading-[80px] text-[#252525] font-montserrat font-light uppercase mb-12 lg:mb-20">
           What we<br />build
         </h2>
       </div>
@@ -103,9 +103,10 @@ export default function WhatWeBuildSection({ services }: WhatWeBuildSectionProps
             </div>
           </div>
 
-          <div className="relative flex items-center justify-center min-h-[520px]">
+          <div className="relative flex items-center justify-center min-h-[320px] lg:min-h-[520px]">
+            {/* Left card — desktop only */}
             <div
-              className="absolute transition-all duration-500 ease-in-out"
+              className="hidden lg:block absolute transition-all duration-500 ease-in-out"
               style={{
                 left: "0px",
                 zIndex: 1,
@@ -117,19 +118,19 @@ export default function WhatWeBuildSection({ services }: WhatWeBuildSectionProps
                 className="bg-white shadow-[0px_6px_45px_0px_rgba(0,0,0,0.18)] w-[396px] p-[36px] py-[40px] transition-all duration-500"
                 style={{ minHeight: "430px" }}
               >
-                <h3 className="text-[#252525] text-[18px] font-montserrat font-bold uppercase mb-2 tracking-[-0.36px] leading-[36px]">
+                <h3 className="text-[#252525] text-[18px] font-montserrat font-extrabold uppercase mb-2 tracking-[-0.36px] leading-[36px]">
                   {services[prevIndex].title}
                 </h3>
 
-                <p className="text-[#727272] text-[17px] leading-[26px] mb-6">
+                <p className="text-[#727272] font-montserrat font-normal text-[17px] leading-[26px] mb-6">
                   {services[prevIndex].description}
                 </p>
 
-                <p className="text-[#727272] text-[17px] leading-[26px] mb-4">
+                <p className="text-[#727272] font-montserrat font-normal text-[17px] leading-[26px] mb-4">
                   Services include:
                 </p>
 
-                <ul className="space-y-0 text-[#727272] text-[17px] leading-[20px] list-none">
+                <ul className="space-y-0 font-montserrat font-normal text-[#727272] text-[17px] leading-[20px] list-none">
                   {services[prevIndex].items.map((item, idx) => (
                     <li key={idx} className="flex items-start pb-2 last:pb-0">
                       <span className="text-[#267275] mr-2 flex-shrink-0">▸</span>
@@ -140,8 +141,9 @@ export default function WhatWeBuildSection({ services }: WhatWeBuildSectionProps
               </div>
             </div>
 
+            {/* Center card — always visible */}
             <div
-              className="relative transition-all duration-500 ease-in-out"
+              className="relative transition-all duration-500 ease-in-out w-full lg:w-auto"
               style={{
                 zIndex: 10,
                 opacity: 1,
@@ -149,22 +151,21 @@ export default function WhatWeBuildSection({ services }: WhatWeBuildSectionProps
               }}
             >
               <div
-                className="bg-white shadow-[0px_6px_45px_0px_rgba(0,0,0,0.18)] w-[396px] p-[40px] py-[40px] transition-all duration-500"
-                style={{ minHeight: "480px" }}
+                className="bg-white shadow-[0px_6px_45px_0px_rgba(0,0,0,0.18)] w-full lg:w-[396px] p-5 lg:p-[40px] transition-all duration-500 min-h-[320px] lg:min-h-[480px]"
               >
-                <h3 className="text-[#252525] text-[18px] font-montserrat font-bold uppercase mb-2 tracking-[-0.36px] leading-[36px]">
+                <h3 className="text-[#252525] text-[18px] font-montserrat font-extrabold uppercase mb-2 tracking-[-0.36px] leading-[36px]">
                   {services[centerIndex].title}
                 </h3>
 
-                <p className="text-[#727272] text-[17px] leading-[26px] mb-6">
+                <p className="text-[#727272] font-montserrat font-normal text-[17px] leading-[26px] mb-6">
                   {services[centerIndex].description}
                 </p>
 
-                <p className="text-[#727272] text-[17px] leading-[26px] mb-4">
+                <p className="text-[#727272] font-montserrat font-normal text-[17px] leading-[26px] mb-4">
                   Services include:
                 </p>
 
-                <ul className="space-y-0 text-[#727272] text-[17px] leading-[20px] list-none">
+                <ul className="space-y-0 font-montserrat font-normal text-[#727272] text-[17px] leading-[20px] list-none">
                   {services[centerIndex].items.map((item, idx) => (
                     <li key={idx} className="flex items-start pb-2 last:pb-0">
                       <span className="text-[#267275] mr-2 flex-shrink-0">▸</span>
@@ -175,8 +176,9 @@ export default function WhatWeBuildSection({ services }: WhatWeBuildSectionProps
               </div>
             </div>
 
+            {/* Right card — desktop only */}
             <div
-              className="absolute transition-all duration-500 ease-in-out"
+              className="hidden lg:block absolute transition-all duration-500 ease-in-out"
               style={{
                 right: "0px",
                 zIndex: 1,
@@ -188,19 +190,19 @@ export default function WhatWeBuildSection({ services }: WhatWeBuildSectionProps
                 className="bg-white shadow-[0px_6px_45px_0px_rgba(0,0,0,0.18)] w-[396px] p-[36px] py-[40px] transition-all duration-500"
                 style={{ minHeight: "430px" }}
               >
-                <h3 className="text-[#252525] text-[18px] font-montserrat font-bold uppercase mb-2 tracking-[-0.36px] leading-[36px]">
+                <h3 className="text-[#252525] text-[18px] font-montserrat font-extrabold uppercase mb-2 tracking-[-0.36px] leading-[36px]">
                   {services[nextIndex].title}
                 </h3>
 
-                <p className="text-[#727272] text-[17px] leading-[26px] mb-6">
+                <p className="text-[#727272] font-montserrat font-normal text-[17px] leading-[26px] mb-6">
                   {services[nextIndex].description}
                 </p>
 
-                <p className="text-[#727272] text-[17px] leading-[26px] mb-4">
+                <p className="text-[#727272] font-montserrat font-normal text-[17px] leading-[26px] mb-4">
                   Services include:
                 </p>
 
-                <ul className="space-y-0 text-[#727272] text-[17px] leading-[20px] list-none">
+                <ul className="space-y-0 font-montserrat font-normal text-[#727272] text-[17px] leading-[20px] list-none">
                   {services[nextIndex].items.map((item, idx) => (
                     <li key={idx} className="flex items-start pb-2 last:pb-0">
                       <span className="text-[#267275] mr-2 flex-shrink-0">▸</span>
@@ -214,11 +216,11 @@ export default function WhatWeBuildSection({ services }: WhatWeBuildSectionProps
 
           <button
             onClick={scrollPrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 w-12 h-12 bg-white hover:bg-[#267275] text-[#353638] hover:text-white border border-[#ddd] hover:border-[#267275] rounded flex items-center justify-center transition-all duration-300 shadow-md z-20 focus:outline-none focus-visible:outline-none"
+            className="absolute left-2 lg:left-0 top-1/2 -translate-y-1/2 translate-x-0 lg:-translate-x-16 w-10 h-10 lg:w-12 lg:h-12 bg-white hover:bg-[#267275] text-[#353638] hover:text-white border border-[#ddd] hover:border-[#267275] rounded flex items-center justify-center transition-all duration-300 shadow-md z-20 focus:outline-none focus-visible:outline-none"
             aria-label="Previous slide"
           >
             <svg
-              className="w-6 h-6"
+              className="w-5 h-5 lg:w-6 lg:h-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -234,11 +236,11 @@ export default function WhatWeBuildSection({ services }: WhatWeBuildSectionProps
 
           <button
             onClick={scrollNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 w-12 h-12 bg-white hover:bg-[#267275] text-[#353638] hover:text-white border border-[#ddd] hover:border-[#267275] rounded flex items-center justify-center transition-all duration-300 shadow-md z-20 focus:outline-none focus-visible:outline-none"
+            className="absolute right-2 lg:right-0 top-1/2 -translate-y-1/2 translate-x-0 lg:translate-x-16 w-10 h-10 lg:w-12 lg:h-12 bg-white hover:bg-[#267275] text-[#353638] hover:text-white border border-[#ddd] hover:border-[#267275] rounded flex items-center justify-center transition-all duration-300 shadow-md z-20 focus:outline-none focus-visible:outline-none"
             aria-label="Next slide"
           >
             <svg
-              className="w-6 h-6"
+              className="w-5 h-5 lg:w-6 lg:h-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"

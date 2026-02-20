@@ -57,7 +57,7 @@ export default function Header({ transparent = false, whiteLogo = false, whiteMe
           <Link href="/" className="relative h-[37px] w-[134px] cursor-pointer">
             <Image alt="Nexium Trio Logo" src={logoSrc} fill className="object-contain" />
           </Link>
-          <p className={`hidden sm:block text-base lg:text-xl ${textColor} transition-colors duration-300`}>
+          <p className={`hidden sm:block text-base lg:text-xl font-montserrat font-semibold ${textColor} transition-colors duration-300`}>
             | {getPageTitle()}
           </p>
         </div>

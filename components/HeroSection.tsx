@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 interface HeroSectionProps {
   heading: string;
@@ -59,12 +60,21 @@ export default function HeroSection({
 
           {showButton && (
             <div className="lg:col-span-4 flex lg:justify-start lg:items-start lg:pt-2">
-              <button
-                onClick={handleClick}
-                className="bg-[#267275] hover:bg-[#1f5e61] text-white px-12 py-4 text-[14px] lg:text-[16px] tracking-[1.6px] uppercase font-montserrat font-extrabold transition-all duration-200 shadow-sm hover:shadow-md whitespace-nowrap"
-              >
-                {buttonText}
-              </button>
+              {buttonLink ? (
+                <Link
+                  href={buttonLink}
+                  className="bg-[#267275] hover:bg-[#1f5e61] text-white px-12 py-4 text-[14px] lg:text-[16px] tracking-[1.6px] uppercase font-montserrat font-extrabold transition-all duration-200 shadow-sm hover:shadow-md whitespace-nowrap inline-block"
+                >
+                  {buttonText}
+                </Link>
+              ) : (
+                <button
+                  onClick={handleClick}
+                  className="bg-[#267275] hover:bg-[#1f5e61] text-white px-12 py-4 text-[14px] lg:text-[16px] tracking-[1.6px] uppercase font-montserrat font-extrabold transition-all duration-200 shadow-sm hover:shadow-md whitespace-nowrap"
+                >
+                  {buttonText}
+                </button>
+              )}
             </div>
           )}
         </div>

@@ -51,6 +51,7 @@ export default function AboutUs() {
         heading="We Build Digital Products That Build Businesses"
         description="At NexiumTrio, we're more than just developers. we're collaborators, problem-solvers, and long-term partners. Whether you're scaling fast, replatforming, or building from scratch, we turn your requirements into high-performance platforms that reflect your vision and drive real results."
         buttonText="GET A QUOTE"
+        buttonLink="/contact-us"
         backgroundImage={imgPolygon3}
       />
 
@@ -198,6 +199,7 @@ export default function AboutUs() {
         topText="Proudly based in Melbourne"
         heading="We're a team of software engineers who genuinely love what we do"
         buttonText="Get a Quote"
+        buttonLink="/contact-us"
       />
 
       <ContactFormSection />
