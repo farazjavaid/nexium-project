@@ -25,7 +25,7 @@ export default function Navbar({ isScrolled = false, whiteMenu = false }: Navbar
     if (!isOpen) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "";
     }
   };
 
