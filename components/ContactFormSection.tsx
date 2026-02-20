@@ -46,7 +46,10 @@ export default function ContactFormSection() {
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-20">
           <div className="flex flex-col justify-start pt-4">
             <p className="text-[#353638] font-montserrat font-normal text-[22px] lg:text-[28px] mb-10">Collaborate with us</p>
-            <h2 className="text-[26px] sm:text-[32px] lg:text-[80px] text-[#353638] font-montserrat font-normal capitalize mb-8 leading-[1.15] tracking-[-0.8px]">
+            <h2 className="block lg:hidden text-[26px] sm:text-[32px] text-[#353638] font-montserrat font-normal capitalize mb-8 leading-[1.15] tracking-[-0.8px]">
+              Let&apos;s Build Something Great
+            </h2>
+            <h2 className="hidden lg:block text-[80px] text-[#353638] font-montserrat font-normal capitalize mb-8 leading-[1.15] tracking-[-0.8px]">
               Let&apos;s Build <br /> Something <br /> Great
             </h2>
             <p className="text-[#353638] font-montserrat font-normal text-[18px] lg:text-[22px] leading-[1.6] max-w-lg">
