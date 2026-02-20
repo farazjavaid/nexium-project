@@ -1,6 +1,6 @@
 export default function ContactFormSection() {
   return (
-    <section className="w-full pt-20 lg:pt-28 mb-[-140] px-4 lg:px-20 bg-[#e7e5e5]">
+    <section className="w-full pt-20 lg:pt-28 pb-16 lg:pb-0 mb-0 lg:mb-[-140px] px-4 lg:px-20 bg-[#e7e5e5]">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-20">
           <div className="flex flex-col justify-start pt-4">
@@ -14,26 +14,26 @@ export default function ContactFormSection() {
           </div>
 
           <div className="bg-white px-6 lg:px-10 pt-10 lg:pt-[60px] pb-10 lg:pb-[80px] mt-8 lg:mt-40 z-9">
-            <form className="space-y-10">
+            <form className="space-y-6 lg:space-y-10">
               <div className="border-b-2 border-[#e4e4e4] pb-3">
                 <input
                   type="text"
                   placeholder="Name"
-                  className="w-full font-montserrat text-[22px] text-[#a2a2a2] bg-transparent border-none outline-none placeholder:text-[#a2a2a2]"
+                  className="w-full font-montserrat text-[18px] lg:text-[22px] text-[#a2a2a2] bg-transparent border-none outline-none placeholder:text-[#a2a2a2]"
                 />
               </div>
               <div className="border-b-2 border-[#e4e4e4] pb-3">
                 <input
                   type="email"
                   placeholder="Email address"
-                  className="w-full font-montserrat text-[22px] text-[#a2a2a2] bg-transparent border-none outline-none placeholder:text-[#a2a2a2]"
+                  className="w-full font-montserrat text-[18px] lg:text-[22px] text-[#a2a2a2] bg-transparent border-none outline-none placeholder:text-[#a2a2a2]"
                 />
               </div>
               <div className="border-b-2 border-[#e4e4e4] pb-3">
                 <textarea
                   placeholder="Message"
                   rows={4}
-                  className="w-full text-[22px] text-[#a2a2a2] bg-transparent border-none outline-none resize-none placeholder:text-[#a2a2a2]"
+                  className="w-full text-[18px] lg:text-[22px] text-[#a2a2a2] bg-transparent border-none outline-none resize-none placeholder:text-[#a2a2a2]"
                 />
               </div>
               <div className="flex items-center gap-4 pt-2">
