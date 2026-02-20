@@ -7,12 +7,7 @@ export default function OutgrownSection() {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="mb-12 lg:mb-16 flex flex-col lg:flex-row lg:items-center lg:gap-22 relative">
           <h2
-            className="text-[#353638] font-montserrat font-light uppercase mb-6 lg:mb-0 lg:flex-shrink-0"
-            style={{
-              fontSize: "48px",
-              lineHeight: "67px",
-              letterSpacing: "0.5px",
-            }}
+            className="text-[30px] lg:text-[48px] leading-tight lg:leading-[67px] tracking-[0.5px] text-[#353638] font-montserrat font-light uppercase mb-6 lg:mb-0 lg:flex-shrink-0"
           >
             You&apos;ve outgrown<br />off-the-shelf
           </h2>
@@ -32,7 +27,7 @@ export default function OutgrownSection() {
               width={120}
               height={120}
               style={{ transform: "rotate(55deg)" }}
-              className="absolute -top-15 -right-8 lg:-right-16 opacity-80"
+              className="hidden lg:block absolute -top-15 -right-16 opacity-80"
             />
           </div>
         </div>
