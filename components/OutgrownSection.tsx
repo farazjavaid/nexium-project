@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import StatsSection from "@/components/StatsSection";
+import { motion } from "framer-motion";
 
 export default function OutgrownSection() {
   return (
@@ -21,14 +24,19 @@ export default function OutgrownSection() {
             >
               We work with businesses that are scaling fast, evolving their digital presence, or rethinking their current offer. Whether you're replacing your existing workflows or building something from scratch, we designand develop custom platforms that support your goals.
             </p>
-            <Image
-              src="/images/landing/Polygon 1.svg"
-              alt=""
-              width={120}
-              height={120}
-              style={{ transform: "rotate(55deg)" }}
+            <motion.div
               className="hidden lg:block absolute -top-15 -right-16 opacity-80"
-            />
+              initial={{ rotate: 55 }}
+              animate={{ rotate: 55 + 360 }}
+              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+            >
+              <Image
+                src="/images/landing/Polygon 1.svg"
+                alt=""
+                width={120}
+                height={120}
+              />
+            </motion.div>
           </div>
         </div>
 

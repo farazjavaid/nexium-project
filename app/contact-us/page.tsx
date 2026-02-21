@@ -45,7 +45,7 @@ export default function ContactUs() {
 
       <section className="relative w-full overflow-hidden font-montserrat">
         <div className="flex flex-col lg:flex-row">
-          <div className="relative w-full lg:w-1/2 bg-[#267275] min-h-[500px] lg:min-h-[713px] flex flex-col justify-center py-12 sm:py-16 lg:py-20">
+          <div className="relative w-full lg:w-1/2 bg-[#267275] lg:min-h-[713px] flex flex-col justify-center py-8 lg:py-20">
             <div className="absolute inset-0 pointer-events-none opacity-30">
               <Image
                 alt=""
@@ -64,8 +64,8 @@ export default function ContactUs() {
               />
             </div>
 
-            <div className="relative z-10 max-w-7xl ml-auto ps-10 pe-25 pt-20">
-              <div className="mb-12 sm:mb-16 lg:mb-[138px]">
+            <div className="relative z-10 max-w-7xl ml-auto px-6 lg:ps-10 lg:pe-25 pt-6 lg:pt-20">
+              <div className="mb-6 lg:mb-[138px]">
                 <h1 className="text-[40px] sm:text-[50px] md:text-[60px] lg:text-[75px] leading-[1.1] sm:leading-[1.05] text-white uppercase font-light mb-0">
                   Got an Idea?
                 </h1>
@@ -103,8 +103,8 @@ export default function ContactUs() {
             </div>
           </div>
 
-          <div className="relative w-full lg:w-1/2 bg-[#ededee] min-h-[500px] lg:min-h-[713px] flex items-center justify-center py-12 sm:py-16 lg:py-20">
-            <div className="relative z-10 max-w-7xl mx-auto w-full px-4 lg:px-40 pt-20">
+          <div className="relative w-full lg:w-1/2 bg-[#ededee] lg:min-h-[713px] flex items-center justify-center py-8 lg:py-20">
+            <div className="relative z-10 max-w-7xl mx-auto w-full px-6 lg:px-40 pt-6 lg:pt-20">
               <form onSubmit={handleSubmit} className="w-full max-w-[465px]">
               <div className="mb-8 sm:mb-10 lg:mb-[40px]">
                 <input
