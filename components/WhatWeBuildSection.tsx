@@ -93,7 +93,7 @@ export default function WhatWeBuildSection({ services }: WhatWeBuildSectionProps
           What we<br />build
         </h2>
       </div>
-      <div className="max-w-7xl mx-auto px-4 lg:px-20">
+      <div className="max-w-7xl mx-auto px-6 lg:px-20">
         <div className="relative">
           <div className="overflow-hidden opacity-0 h-0" ref={emblaRef}>
             <div className="flex">
@@ -237,7 +237,7 @@ export default function WhatWeBuildSection({ services }: WhatWeBuildSectionProps
         </div>
 
         {/* Mobile arrows — below card */}
-        <div className="flex lg:hidden items-center justify-center gap-4 mt-6">
+        <div className="flex lg:hidden items-center justify-center gap-4 mt-8">
           <button
             onClick={scrollPrev}
             className="w-10 h-10 bg-white hover:bg-[#267275] text-[#353638] hover:text-white border border-[#ddd] hover:border-[#267275] rounded flex items-center justify-center transition-all duration-300 shadow-md focus:outline-none focus-visible:outline-none"
