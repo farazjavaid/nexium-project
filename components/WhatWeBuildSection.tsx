@@ -161,23 +161,23 @@ export default function WhatWeBuildSection({ services }: WhatWeBuildSectionProps
               }}
             >
               <div
-                className="bg-white shadow-[0px_6px_45px_0px_rgba(0,0,0,0.18)] w-full lg:w-[396px] p-5 lg:p-[40px] transition-all duration-500 min-h-[320px] lg:min-h-[480px]"
+                className="bg-white shadow-[0px_6px_45px_0px_rgba(0,0,0,0.18)] w-full lg:w-[396px] p-7 lg:p-[40px] transition-all duration-500 min-h-[320px] lg:min-h-[480px]"
               >
-                <h3 className="text-[#252525] text-[18px] font-montserrat font-extrabold uppercase mb-2 tracking-[-0.36px] leading-[36px]">
+                <h3 className="text-[#252525] text-[18px] font-montserrat font-extrabold uppercase mb-3 lg:mb-2 tracking-[-0.36px] leading-[36px]">
                   {services[centerIndex].title}
                 </h3>
 
-                <p className="text-[#727272] font-montserrat font-normal text-[17px] leading-[26px] mb-6">
+                <p className="text-[#727272] font-montserrat font-normal text-[17px] leading-[26px] mb-7 lg:mb-6">
                   {services[centerIndex].description}
                 </p>
 
-                <p className="text-[#727272] font-montserrat font-normal text-[17px] leading-[26px] mb-4">
+                <p className="text-[#727272] font-montserrat font-normal text-[17px] leading-[26px] mb-5 lg:mb-4">
                   Services include:
                 </p>
 
-                <ul className="space-y-0 font-montserrat font-normal text-[#727272] text-[17px] leading-[20px] list-none">
+                <ul className="space-y-2 lg:space-y-0 font-montserrat font-normal text-[#727272] text-[17px] leading-[20px] list-none">
                   {services[centerIndex].items.map((item, idx) => (
-                    <li key={idx} className="flex items-start pb-2 last:pb-0">
+                    <li key={idx} className="flex items-start pb-2 lg:pb-2 last:pb-0">
                       <span className="text-[#267275] mr-2 flex-shrink-0">▸</span>
                       <span>{item}</span>
                     </li>
