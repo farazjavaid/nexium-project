@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
 interface ServiceItem {
@@ -23,6 +23,7 @@ export default function WhatWeBuildSection({ services }: WhatWeBuildSectionProps
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [direction, setDirection] = useState<'next' | 'prev' | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
+  const touchStartX = useRef<number | null>(null);
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
@@ -148,6 +149,15 @@ export default function WhatWeBuildSection({ services }: WhatWeBuildSectionProps
                 zIndex: 10,
                 opacity: 1,
                 transform: `scale(1.05) translateX(${getTranslateX('center')}px)`,
+              }}
+              onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
+              onTouchEnd={(e) => {
+                if (touchStartX.current === null) return;
+                const diff = touchStartX.current - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) {
+                  diff > 0 ? scrollNext() : scrollPrev();
+                }
+                touchStartX.current = null;
               }}
             >
               <div
