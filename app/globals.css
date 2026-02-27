@@ -60,3 +60,16 @@ body {
 .animate-scroll:hover {
   animation-play-state: paused;
 }
+
+input:focus,
+textarea:focus,
+select:focus {
+  color: #1e5a5d;
+  caret-color: #1e5a5d;
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+  color: #1e5a5d;
+}
+

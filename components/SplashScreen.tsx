@@ -3,16 +3,16 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-export default function SplashScreen() {
+interface SplashScreenProps {
+  onComplete?: () => void;
+}
+
+export default function SplashScreen({ onComplete }: SplashScreenProps) {
   const [visible, setVisible] = useState(false);
   const [phase, setPhase] = useState(0);
 
   useEffect(() => {
-    const seen = sessionStorage.getItem("splashSeen");
-    if (seen) return;
-
     setVisible(true);
-    sessionStorage.setItem("splashSeen", "1");
 
     const timers = [
       setTimeout(() => setPhase(1), 50),
@@ -21,7 +21,7 @@ export default function SplashScreen() {
       setTimeout(() => setPhase(4), 5000),
       setTimeout(() => setPhase(5), 5750),
       setTimeout(() => setPhase(6), 8500),
-      setTimeout(() => setVisible(false), 9300),
+      setTimeout(() => { setVisible(false); onComplete?.(); }, 9300),
     ];
 
     return () => timers.forEach(clearTimeout);
@@ -82,6 +82,8 @@ export default function SplashScreen() {
           opacity: phase >= 3 ? 1 : 0,
           animation: phase >= 3 ? "logoPopIn 900ms ease-out forwards" : "none",
           zIndex: 1,
+          maxWidth: "60vw",
+          height: "auto",
         }}
       />
 
@@ -124,11 +126,12 @@ export default function SplashScreen() {
       >
         <p
           style={{
-            fontSize: "22px",
+            fontSize: "clamp(16px, 5vw, 22px)",
             fontFamily: "var(--font-montserrat), sans-serif",
             fontWeight: 600,
             color: "white",
-            whiteSpace: "nowrap",
+            textAlign: "center",
+            padding: "0 24px",
             letterSpacing: "0.02em",
             opacity: phase >= 5 ? 1 : 0,
             animation: phase >= 5 ? "springUp 1700ms linear forwards" : "none",

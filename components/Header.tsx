@@ -39,8 +39,10 @@ export default function Header({ transparent = false, whiteLogo = false, whiteMe
     if (pathname === "/about-us") return "About Us";
     if (pathname === "/our-services") return "Our Services";
     if (pathname === "/contact-us") return "Contact Us";
-    return "Home";
+    return null;
   };
+
+  const pageTitle = getPageTitle();
 
   return (
     <header
@@ -57,9 +59,11 @@ export default function Header({ transparent = false, whiteLogo = false, whiteMe
           <Link href="/" className="relative h-[37px] w-[134px] cursor-pointer">
             <Image alt="Nexium Trio Logo" src={logoSrc} fill className="object-contain" />
           </Link>
-          <p className={`hidden sm:block text-base lg:text-xl font-montserrat font-semibold ${textColor} transition-colors duration-300`}>
-            | {getPageTitle()}
-          </p>
+          {pageTitle && (
+            <p className="hidden sm:block text-base lg:text-xl font-montserrat font-semibold text-[#727272] transition-colors duration-300">
+              | {pageTitle}
+            </p>
+          )}
         </div>
         <Navbar isScrolled={isScrolled} whiteMenu={whiteMenu} />
       </div>

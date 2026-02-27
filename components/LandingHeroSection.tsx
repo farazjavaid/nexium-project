@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import AnimatedTriangles from "./AnimatedTriangles";
 import AnimatedTrianglesSlide3 from "./AnimatedTrianglesSlide3";
 import Slide4Decorations from "./Slide4Decorations";
-import Slide5Decorations from "./Slide5Decorations";
+
 
 interface LandingHeroSectionProps {
   heading: string;
@@ -15,6 +15,7 @@ interface LandingHeroSectionProps {
   onButtonClick?: () => void;
   showButton?: boolean;
   onSlideChange?: (slide: number) => void;
+  started?: boolean;
 }
 
 export default function LandingHeroSection({
@@ -25,6 +26,7 @@ export default function LandingHeroSection({
   onButtonClick,
   showButton = true,
   onSlideChange,
+  started = false,
 }: LandingHeroSectionProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const onSlideChangeRef = useRef(onSlideChange);
@@ -38,21 +40,22 @@ export default function LandingHeroSection({
   }, [currentSlide]);
 
   useEffect(() => {
+    if (!started) return;
+
     const slideDurations = [
       4000,
       600,
       4000,
       600,
       4000,
-      2000,
     ];
 
     const timeout = setTimeout(() => {
-      setCurrentSlide((prev) => (prev + 1) % 6);
+      setCurrentSlide((prev) => (prev + 1) % 5);
     }, slideDurations[currentSlide]);
 
     return () => clearTimeout(timeout);
-  }, [currentSlide]);
+  }, [currentSlide, started]);
 
   return (
     <motion.section
@@ -174,18 +177,6 @@ export default function LandingHeroSection({
         </div>
       </motion.div>
 
-      <motion.div
-        animate={{
-          opacity: currentSlide === 5 ? 1 : 0,
-          scale: currentSlide === 5 ? 1 : 0.95
-        }}
-        transition={{
-          duration: 0.3,
-          ease: "easeInOut"
-        }}
-      >
-        <Slide5Decorations />
-      </motion.div>
     </motion.section>
   );
 }

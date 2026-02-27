@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
+import SplashScreen from "@/components/SplashScreen";
 import LandingHeroSection from "@/components/LandingHeroSection";
 import ClientLogosSection from "@/components/ClientLogosSection";
 import OutgrownSection from "@/components/OutgrownSection";
@@ -20,6 +21,7 @@ import { Client, Project, Testimonial } from "@/types/admin";
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site/api';
 
 export default function Home() {
+  const [splashDone, setSplashDone] = useState(false);
   const [heroSlide, setHeroSlide] = useState(0);
   const [clientLogos, setClientLogos] = useState<string[]>([]);
   const [projects, setProjects] = useState<any[]>([]);
@@ -68,6 +70,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
+      <SplashScreen onComplete={() => setSplashDone(true)} />
       <Header
         transparent
         whiteLogo={heroSlide === 2 || heroSlide === 3}
@@ -81,6 +84,7 @@ export default function Home() {
         buttonLink="/contact-us"
         showButton={true}
         onSlideChange={setHeroSlide}
+        started={splashDone}
       />
 
       <ClientLogosSection
