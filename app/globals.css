@@ -27,10 +27,6 @@ body {
   font-family: var(--font-josefin);
 }
 
-@utility font-mona {
-  font-family: var(--font-mona-sans);
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;

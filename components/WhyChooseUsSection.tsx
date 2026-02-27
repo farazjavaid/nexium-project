@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface Feature {
   number: string;
   title: string;
@@ -79,7 +81,7 @@ export default function WhyChooseUsSection({
                       feature.isDark ? "text-white" : "text-white"
                     }`}
                     style={{
-                      fontSize: "18px",
+                      fontSize: "21px",
                       letterSpacing: "-0.36px",
                     }}
                   >
@@ -89,10 +91,10 @@ export default function WhyChooseUsSection({
                     style={{
                       color: "rgba(255, 255, 255, 0.80)",
                       fontFamily: "Segoe UI",
-                      fontSize: "17px",
+                      fontSize: "19px",
                       fontStyle: "normal",
                       fontWeight: 400,
-                      lineHeight: "26px",
+                      lineHeight: "30px",
                     }}
                   >
                     {feature.description}
@@ -102,6 +104,17 @@ export default function WhyChooseUsSection({
             </div>
           ))}
         </div>
+      </div>
+      {/* Rectangle 702 - bottom right decorative image */}
+      <div className="absolute pointer-events-none z-0 hidden lg:block" style={{ bottom: "-70px", right: "-70px", opacity: 0.4 }}>
+        <Image
+          src="/images/about-us/rectangle-702.png"
+          alt=""
+          width={400}
+          height={400}
+          className="object-contain"
+          style={{ display: "block" }}
+        />
       </div>
     </section>
   );

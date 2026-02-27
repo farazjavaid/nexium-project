@@ -82,7 +82,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
           opacity: phase >= 3 ? 1 : 0,
           animation: phase >= 3 ? "logoPopIn 900ms ease-out forwards" : "none",
           zIndex: 1,
-          maxWidth: "60vw",
+          width: "min(220px, 60vw)",
           height: "auto",
         }}
       />
