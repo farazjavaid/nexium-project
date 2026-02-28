@@ -1,10 +1,17 @@
 const API_URL = '';
 const TOKEN_STORAGE_KEY = 'nexium_admin_token';
-const BACKEND_URL = 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site/api';
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site/api';
+const STORAGE_BASE = BACKEND_URL.replace(/\/api$/, '');
+
+export function getStorageUrl(path: string | null | undefined): string {
+  if (!path) return '';
+  const cleanPath = path.startsWith('storage/') ? path.slice(8) : path;
+  return `/api/storage/${cleanPath}`;
+}
 
 function fixStorageUrl(value: unknown): unknown {
   if (typeof value === 'string') {
-    return value.replace(/http:\/\/localhost:\d+/g, BACKEND_URL);
+    return value.replace(/http:\/\/localhost:\d+\/api/g, BACKEND_URL).replace(/http:\/\/localhost:\d+/g, BACKEND_URL);
   }
   if (Array.isArray(value)) {
     return value.map(fixStorageUrl);

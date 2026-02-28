@@ -6,8 +6,7 @@ import Input from '@/components/admin/FormComponents/Input';
 import Button from '@/components/admin/FormComponents/Button';
 import FileUpload from '@/components/admin/FormComponents/FileUpload';
 import { profileService, UserProfile } from '@/lib/services/profileService';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site/api';
+import { getStorageUrl } from '@/lib/api';
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
@@ -45,7 +44,7 @@ export default function ProfilePage() {
           email: userData.email,
         });
         if (userData.profile_picture) {
-          setPreviewUrl(`${API_URL}/storage/${userData.profile_picture}`);
+          setPreviewUrl(getStorageUrl(userData.profile_picture));
         }
       }
     } catch (error) {

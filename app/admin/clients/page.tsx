@@ -6,8 +6,7 @@ import Image from 'next/image';
 import { clientService } from '@/lib/services/clientService';
 import { Client } from '@/types/admin';
 import { formatDate } from '@/lib/utils';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site/api';
+import { getStorageUrl } from '@/lib/api';
 
 export default function ClientsPage() {
   const [clients, setClients] = useState<Client[]>([]);
@@ -81,7 +80,7 @@ export default function ClientsPage() {
 
               <div className="relative h-32 mb-3 bg-gray-50 rounded flex items-center justify-center">
                 <Image
-                  src={`${API_URL}/storage/${client.logo}`}
+                  src={getStorageUrl(client.logo)}
                   alt={client.name}
                   width={120}
                   height={80}

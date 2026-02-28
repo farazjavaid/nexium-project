@@ -10,8 +10,7 @@ import HeroSection from "@/components/HeroSection";
 import ClientLogosSection from "@/components/ClientLogosSection";
 import { clientService } from "@/lib/services/clientService";
 import { Client } from "@/types/admin";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site/api';
+import { getStorageUrl } from "@/lib/api";
 
 const imgPolygon3 = "/images/about-us/polygon-3.svg";
 const imgRectangle702 = "/images/about-us/rectangle-702.png";
@@ -32,7 +31,7 @@ export default function AboutUs() {
         const logos = response.data
           ?.filter((client: Client) => client.is_active)
           .sort((a: Client, b: Client) => a.display_order - b.display_order)
-          .map((client: Client) => `${API_URL}/storage/${client.logo}`) || [];
+          .map((client: Client) => getStorageUrl(client.logo)) || [];
 
         setClientLogos(logos);
       } catch (error) {

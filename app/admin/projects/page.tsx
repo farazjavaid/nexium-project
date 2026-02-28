@@ -6,8 +6,7 @@ import Image from 'next/image';
 import { projectService } from '@/lib/services/projectService';
 import { Project } from '@/types/admin';
 import { formatDate } from '@/lib/utils';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site/api';
+import { getStorageUrl } from '@/lib/api';
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -70,7 +69,7 @@ export default function ProjectsPage() {
           >
             <div className="relative h-48" style={{ backgroundColor: project.bg_color }}>
               <Image
-                src={`${API_URL}/storage/${project.image}`}
+                src={getStorageUrl(project.image)}
                 alt={project.title}
                 fill
                 className="object-cover opacity-80"

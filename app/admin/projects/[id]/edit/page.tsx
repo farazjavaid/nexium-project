@@ -9,8 +9,7 @@ import FileUpload from '@/components/admin/FormComponents/FileUpload';
 import ColorPicker from '@/components/admin/FormComponents/ColorPicker';
 import Button from '@/components/admin/FormComponents/Button';
 import { projectService } from '@/lib/services/projectService';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site/api';
+import { getStorageUrl } from '@/lib/api';
 
 export default function EditProjectPage() {
   const router = useRouter();
@@ -40,7 +39,7 @@ export default function EditProjectPage() {
             link: project.link || '',
             bgColor: project.bg_color,
             image: null,
-            imagePreview: `${API_URL}/storage/${project.image}`,
+            imagePreview: getStorageUrl(project.image),
           });
         }
       } catch (error) {

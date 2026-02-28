@@ -8,8 +8,7 @@ import Toggle from '@/components/admin/FormComponents/Toggle';
 import FileUpload from '@/components/admin/FormComponents/FileUpload';
 import Button from '@/components/admin/FormComponents/Button';
 import { clientService } from '@/lib/services/clientService';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site/api';
+import { getStorageUrl } from '@/lib/api';
 
 export default function EditClientPage() {
   const router = useRouter();
@@ -35,7 +34,7 @@ export default function EditClientPage() {
             displayOrder: client.display_order,
             isActive: client.is_active,
             logo: null,
-            logoPreview: `${API_URL}/storage/${client.logo}`,
+            logoPreview: getStorageUrl(client.logo),
           });
         }
       } catch (error) {

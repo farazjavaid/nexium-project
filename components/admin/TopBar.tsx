@@ -4,8 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { profileService, UserProfile } from '@/lib/services/profileService';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site/api';
+import { getStorageUrl } from '@/lib/api';
 
 interface TopBarProps {
   onMenuClick: () => void;
@@ -66,7 +65,7 @@ export default function TopBar({ onMenuClick }: TopBarProps) {
           >
             {profile?.profile_picture ? (
               <Image
-                src={`${API_URL}/storage/${profile.profile_picture}`}
+                src={getStorageUrl(profile.profile_picture)}
                 alt="Profile"
                 fill
                 className="object-cover"

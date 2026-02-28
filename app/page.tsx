@@ -17,8 +17,7 @@ import { clientService } from "@/lib/services/clientService";
 import { projectService } from "@/lib/services/projectService";
 import { testimonialService } from "@/lib/services/testimonialService";
 import { Client, Project, Testimonial } from "@/types/admin";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://affectionate-magenta-kangaroo.39-61-46-46.cpanel.site/api';
+import { getStorageUrl } from "@/lib/api";
 
 export default function Home() {
   const [splashDone, setSplashDone] = useState(false);
@@ -34,14 +33,14 @@ export default function Home() {
         const logos = clientsResponse.data
           ?.filter((client: Client) => client.is_active)
           .sort((a: Client, b: Client) => a.display_order - b.display_order)
-          .map((client: Client) => `${API_URL}/storage/${client.logo}`) || [];
+          .map((client: Client) => getStorageUrl(client.logo)) || [];
         setClientLogos(logos);
 
         const projectsResponse = await projectService.getAll();
         const transformedProjects = projectsResponse.data?.map((project: Project) => ({
           title: project.title,
           category: project.category,
-          image: `${API_URL}/storage/${project.image}`,
+          image: getStorageUrl(project.image),
           bgColor: project.bg_color,
           link: project.link,
         })) || [];
