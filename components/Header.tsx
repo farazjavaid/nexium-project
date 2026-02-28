@@ -60,7 +60,7 @@ export default function Header({ transparent = false, whiteLogo = false, whiteMe
             <Image alt="Nexium Trio Logo" src={logoSrc} fill className="object-contain" />
           </Link>
           {pageTitle && (
-            <p className="hidden sm:block text-base lg:text-xl font-montserrat font-semibold text-[#727272] transition-colors duration-300">
+            <p className={`hidden sm:block text-base lg:text-xl font-montserrat font-semibold transition-colors duration-300 ${isScrolled ? 'text-[#727272]' : whiteLogo ? 'text-white' : 'text-[#727272]'}`}>
               | {pageTitle}
             </p>
           )}

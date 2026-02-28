@@ -67,15 +67,15 @@ export default function PremiumSolutionsSection({
               <Image
                 src={service.icon}
                 alt=""
-                width={100}
-                height={100}
+                width={130}
+                height={130}
                 className="absolute top-[-30px] left-[-40px]"
               />
 
               <h3
                 className="text-[#353638] font-montserrat font-bold uppercase relative z-10"
                 style={{
-                  fontSize: "18px",
+                  fontSize: "21px",
                   lineHeight: "36px",
                   letterSpacing: "-0.36px",
                 }}
@@ -86,8 +86,8 @@ export default function PremiumSolutionsSection({
               <p
                 className="text-[#727272] max-w-[320px] relative z-10"
                 style={{
-                  fontSize: "17px",
-                  lineHeight: "26px",
+                  fontSize: "19px",
+                  lineHeight: "30px",
                 }}
               >
                 {service.description}

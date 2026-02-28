@@ -78,7 +78,7 @@ export default function AboutUs() {
       </section>
 
       <section className="w-full py-16 lg:py-24 px-4 lg:px-20 bg-[#1f1f1f] relative overflow-hidden">
-        <div className="absolute right-0 bottom-0 w-[350px] h-[300px] opacity-20 pointer-events-none">
+        <div className="hidden lg:block absolute right-[-60px] bottom-[-60px] w-[350px] h-[300px] opacity-20 pointer-events-none">
           <Image alt="" src={imgRectangle702} fill className="object-contain" />
         </div>
 
