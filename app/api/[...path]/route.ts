@@ -25,7 +25,7 @@ async function handler(
   // cPanel redirects (302) requests with external Origin headers
 
   const hasBody = req.method !== 'GET' && req.method !== 'HEAD';
-  const body = hasBody ? await req.text() : undefined;
+  const body = hasBody ? await req.arrayBuffer() : undefined;
 
   const response = await fetch(url, {
     method: req.method,
