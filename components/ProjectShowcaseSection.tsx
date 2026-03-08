@@ -50,7 +50,7 @@ const cardVariants = {
     transition: {
       delay: i * 0.12,
       duration: 0.6,
-      ease: [0.25, 0.1, 0.25, 1],
+      ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number],
     },
   }),
 };
@@ -66,7 +66,7 @@ export default function ProjectShowcaseSection({
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] }}
         >
           SEE WHAT WE HAVE BUILT
         </motion.h2>
