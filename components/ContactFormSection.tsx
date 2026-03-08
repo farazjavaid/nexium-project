@@ -11,6 +11,7 @@ export default function ContactFormSection() {
     message: "",
   });
   const [agreed, setAgreed] = useState(false);
+  const [focused, setFocused] = useState<"name" | "email" | "message" | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,33 +60,57 @@ export default function ContactFormSection() {
 
           <div className="bg-white px-6 lg:px-10 pt-10 lg:pt-[60px] pb-10 lg:pb-[80px] mt-8 lg:mt-40 z-9">
             <form onSubmit={handleSubmit} className="space-y-6 lg:space-y-10">
-              <div className="border-b-2 border-[#e4e4e4] pb-3">
+              <div className="relative pb-3">
+                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#e4e4e4]" />
+                <div
+                  className="absolute bottom-0 left-0 h-[2px] bg-[#267275] transition-all duration-500 ease-out"
+                  style={{ width: focused === "name" ? "100%" : "0%" }}
+                />
                 <input
                   type="text"
                   placeholder="Name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full font-montserrat text-[18px] lg:text-[22px] text-[#a2a2a2] bg-transparent border-none outline-none placeholder:text-[#a2a2a2]"
+                  onFocus={() => setFocused("name")}
+                  onBlur={() => setFocused(null)}
+                  className="w-full font-montserrat text-[18px] lg:text-[22px] bg-transparent border-none outline-none placeholder:text-[#a2a2a2] transition-colors duration-300"
+                  style={{ color: focused === "name" ? "#267275" : "#a2a2a2" }}
                   required
                 />
               </div>
-              <div className="border-b-2 border-[#e4e4e4] pb-3">
+              <div className="relative pb-3">
+                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#e4e4e4]" />
+                <div
+                  className="absolute bottom-0 left-0 h-[2px] bg-[#267275] transition-all duration-500 ease-out"
+                  style={{ width: focused === "email" ? "100%" : "0%" }}
+                />
                 <input
                   type="email"
                   placeholder="Email address"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full font-montserrat text-[18px] lg:text-[22px] text-[#a2a2a2] bg-transparent border-none outline-none placeholder:text-[#a2a2a2]"
+                  onFocus={() => setFocused("email")}
+                  onBlur={() => setFocused(null)}
+                  className="w-full font-montserrat text-[18px] lg:text-[22px] bg-transparent border-none outline-none placeholder:text-[#a2a2a2] transition-colors duration-300"
+                  style={{ color: focused === "email" ? "#267275" : "#a2a2a2" }}
                   required
                 />
               </div>
-              <div className="border-b-2 border-[#e4e4e4] pb-3">
+              <div className="relative pb-3">
+                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#e4e4e4]" />
+                <div
+                  className="absolute bottom-0 left-0 h-[2px] bg-[#267275] transition-all duration-500 ease-out"
+                  style={{ width: focused === "message" ? "100%" : "0%" }}
+                />
                 <textarea
                   placeholder="Message"
                   rows={4}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full font-montserrat text-[18px] lg:text-[22px] text-[#a2a2a2] bg-transparent border-none outline-none resize-none placeholder:text-[#a2a2a2]"
+                  onFocus={() => setFocused("message")}
+                  onBlur={() => setFocused(null)}
+                  className="w-full font-montserrat text-[18px] lg:text-[22px] bg-transparent border-none outline-none resize-none placeholder:text-[#a2a2a2] transition-colors duration-300"
+                  style={{ color: focused === "message" ? "#267275" : "#a2a2a2" }}
                   required
                 />
               </div>

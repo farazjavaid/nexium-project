@@ -16,6 +16,7 @@ export default function ContactUs() {
     email: '',
     message: '',
   });
+  const [focused, setFocused] = useState<"name" | "email" | "message" | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -106,35 +107,59 @@ export default function ContactUs() {
           <div className="relative w-full lg:w-1/2 bg-[#ededee] lg:min-h-[713px] flex items-center justify-center py-8 lg:py-20">
             <div className="relative z-10 max-w-7xl mx-auto w-full px-6 lg:px-40 pt-6 lg:pt-20">
               <form onSubmit={handleSubmit} className="w-full max-w-[465px]">
-              <div className="mb-8 sm:mb-10 lg:mb-[40px]">
+              <div className="relative mb-8 sm:mb-10 lg:mb-[40px] pb-3 lg:pb-[13px]">
+                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#ddd5d5]" />
+                <div
+                  className="absolute bottom-0 left-0 h-[2px] bg-[#267275] transition-all duration-500 ease-out"
+                  style={{ width: focused === "name" ? "100%" : "0%" }}
+                />
                 <input
                   type="text"
                   placeholder="Name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full text-[18px] sm:text-[20px] lg:text-[22px] text-[#353638] bg-transparent border-b-2 border-[#ddd5d5] pb-3 lg:pb-[13px] outline-none placeholder:text-[#777]"
+                  onFocus={() => setFocused("name")}
+                  onBlur={() => setFocused(null)}
+                  className="w-full text-[18px] sm:text-[20px] lg:text-[22px] bg-transparent border-none outline-none placeholder:text-[#777] transition-colors duration-300"
+                  style={{ color: focused === "name" ? "#267275" : "#353638" }}
                   required
                 />
               </div>
 
-              <div className="mb-8 sm:mb-10 lg:mb-[40px]">
+              <div className="relative mb-8 sm:mb-10 lg:mb-[40px] pb-3 lg:pb-[13px]">
+                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#ddd5d5]" />
+                <div
+                  className="absolute bottom-0 left-0 h-[2px] bg-[#267275] transition-all duration-500 ease-out"
+                  style={{ width: focused === "email" ? "100%" : "0%" }}
+                />
                 <input
                   type="email"
                   placeholder="Email address"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full text-[18px] sm:text-[20px] lg:text-[22px] text-[#353638] bg-transparent border-b-2 border-[#ddd5d5] pb-3 lg:pb-[13px] outline-none placeholder:text-[#777]"
+                  onFocus={() => setFocused("email")}
+                  onBlur={() => setFocused(null)}
+                  className="w-full text-[18px] sm:text-[20px] lg:text-[22px] bg-transparent border-none outline-none placeholder:text-[#777] transition-colors duration-300"
+                  style={{ color: focused === "email" ? "#267275" : "#353638" }}
                   required
                 />
               </div>
 
-              <div className="mb-10 sm:mb-12 lg:mb-[44px]">
+              <div className="relative mb-10 sm:mb-12 lg:mb-[44px] pb-3 lg:pb-[13px]">
+                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#ddd5d5]" />
+                <div
+                  className="absolute bottom-0 left-0 h-[2px] bg-[#267275] transition-all duration-500 ease-out"
+                  style={{ width: focused === "message" ? "100%" : "0%" }}
+                />
                 <textarea
                   placeholder="Message"
                   rows={4}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full text-[18px] sm:text-[20px] lg:text-[22px] text-[#353638] bg-transparent border-b-2 border-[#ddd5d5] pb-3 lg:pb-[13px] outline-none resize-none placeholder:text-[#777]"
+                  onFocus={() => setFocused("message")}
+                  onBlur={() => setFocused(null)}
+                  className="w-full text-[18px] sm:text-[20px] lg:text-[22px] bg-transparent border-none outline-none resize-none placeholder:text-[#777] transition-colors duration-300"
+                  style={{ color: focused === "message" ? "#267275" : "#353638" }}
                   required
                 />
               </div>
