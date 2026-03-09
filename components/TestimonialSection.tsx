@@ -79,10 +79,9 @@ export default function TestimonialSection({
       <div className="max-w-7xl mx-auto">
         <div className="max-w-[1228px] mx-auto relative">
           <span
-            className="text-[#353638] absolute top-0 left-0 pb-4"
+            className="text-[#353638] absolute top-0 left-0 pb-4 font-montserrat"
             style={{
               fontSize: "20px",
-              fontFamily: "system-ui, -apple-system, 'Segoe UI', sans-serif",
               fontStyle: "italic",
             }}
           >
@@ -90,7 +89,7 @@ export default function TestimonialSection({
           </span>
 
           <blockquote
-            className="text-[24px] lg:text-[56px] leading-tight lg:leading-[64px] font-normal text-[#353638] text-start mb-12 pt-12"
+            className="text-[24px] lg:text-[56px] leading-tight lg:leading-[64px] font-normal text-[#353638] text-start mb-12 pt-12 font-montserrat"
           >
             &ldquo;{currentTestimonial.quote}&rdquo;
           </blockquote>
@@ -101,7 +100,7 @@ export default function TestimonialSection({
                 className="text-[#353638]"
                 style={{
                   fontSize: "26px",
-                  fontFamily: "var(--font-josefin)",
+                  fontFamily: "var(--font-montserrat)",
                   lineHeight: "40px",
                   letterSpacing: "-0.52px",
                 }}
@@ -112,7 +111,7 @@ export default function TestimonialSection({
                 className="text-[#353638]/60"
                 style={{
                   fontSize: "18px",
-                  fontFamily: "system-ui, -apple-system, 'Segoe UI', sans-serif",
+                  fontFamily: "var(--font-montserrat)",
                 }}
               >
                 /{currentTestimonial.title}

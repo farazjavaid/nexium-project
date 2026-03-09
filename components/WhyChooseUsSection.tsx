@@ -118,7 +118,7 @@ export default function WhyChooseUsSection({
                   <p
                     style={{
                       color: "rgba(255, 255, 255, 0.80)",
-                      fontFamily: "Segoe UI",
+                      fontFamily: "var(--font-montserrat)",
                       fontSize: "19px",
                       fontStyle: "normal",
                       fontWeight: 400,
