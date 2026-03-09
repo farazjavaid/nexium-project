@@ -99,7 +99,27 @@ export default function AdminDashboard() {
   ];
 
   const unreadContacts = contacts.filter((contact) => !contact.is_read);
-  const recentContacts = contacts.slice(0, 5);
+
+  // Group by email into threads
+  const threadMap = new Map<string, ContactSubmission[]>();
+  for (const c of contacts) {
+    const key = c.email.toLowerCase();
+    if (!threadMap.has(key)) threadMap.set(key, []);
+    threadMap.get(key)!.push(c);
+  }
+  const threads = Array.from(threadMap.values())
+    .map((msgs) => {
+      const sorted = [...msgs].sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      return {
+        name: sorted[0].name,
+        email: sorted[0].email,
+        lastMessage: sorted[0],
+        totalMessages: msgs.length,
+        unreadCount: msgs.filter((m) => !m.is_read).length,
+      };
+    })
+    .sort((a, b) => new Date(b.lastMessage.created_at).getTime() - new Date(a.lastMessage.created_at).getTime())
+    .slice(0, 5);
 
   if (loading) {
     return (
@@ -125,39 +145,80 @@ export default function AdminDashboard() {
         ))}
       </div>
 
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold text-gray-800">Recent Contact Submissions</h2>
-          <span className="px-3 py-1 bg-red-100 text-red-600 rounded-full text-sm font-medium">
-            {unreadContacts.length} Unread
-          </span>
+      <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+          <div>
+            <h2 className="text-lg font-bold text-gray-800">Recent Conversations</h2>
+            <p className="text-xs text-gray-400 mt-0.5">{threadMap.size} unique contacts</p>
+          </div>
+          <div className="flex items-center gap-3">
+            {unreadContacts.length > 0 && (
+              <span className="px-3 py-1 bg-red-50 text-red-500 border border-red-200 rounded-full text-xs font-semibold">
+                {unreadContacts.length} unread
+              </span>
+            )}
+            <a
+              href="/admin/contacts"
+              className="text-xs text-[#267275] hover:underline font-medium"
+            >
+              View all →
+            </a>
+          </div>
         </div>
 
-        <div className="space-y-4">
-          {recentContacts.map((contact) => (
-            <div
-              key={contact.id}
-              className="flex items-start gap-4 p-4 border border-gray-200 rounded-lg hover:bg-gray-50"
+        <div className="divide-y divide-gray-100">
+          {threads.length === 0 && (
+            <div className="flex flex-col items-center justify-center py-12 gap-2">
+              <svg className="w-10 h-10 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+              </svg>
+              <p className="text-gray-400 text-sm">No messages yet</p>
+            </div>
+          )}
+          {threads.map((thread) => (
+            <a
+              key={thread.email}
+              href="/admin/contacts"
+              className="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 transition-colors"
             >
-              <div className="flex-shrink-0">
-                <div className="w-10 h-10 bg-[#267275] rounded-full flex items-center justify-center text-white font-medium">
-                  {contact.name.charAt(0)}
+              {/* Avatar */}
+              <div className="relative flex-shrink-0">
+                <div className="w-11 h-11 bg-[#267275] rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                  {thread.name.charAt(0).toUpperCase()}
                 </div>
+                {thread.unreadCount > 0 && (
+                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white">
+                    {thread.unreadCount}
+                  </span>
+                )}
               </div>
+
+              {/* Info */}
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2">
-                  <h3 className="text-sm font-medium text-gray-900">{contact.name}</h3>
-                  {!contact.is_read && (
-                    <span className="inline-block w-2 h-2 bg-red-500 rounded-full"></span>
+                <div className="flex items-center gap-2 mb-0.5">
+                  <span className={`text-sm truncate ${thread.unreadCount > 0 ? 'font-semibold text-gray-900' : 'font-medium text-gray-700'}`}>
+                    {thread.name}
+                  </span>
+                  {thread.totalMessages > 1 && (
+                    <span className="text-[11px] text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded-full flex-shrink-0">
+                      {thread.totalMessages} msgs
+                    </span>
                   )}
                 </div>
-                <p className="text-sm text-gray-500">{contact.email}</p>
-                <p className="text-sm text-gray-700 mt-1 truncate">{contact.message}</p>
+                <p className="text-xs text-gray-400 mb-1 truncate">{thread.email}</p>
+                <p className={`text-xs truncate ${thread.unreadCount > 0 ? 'text-gray-700' : 'text-gray-400'}`}>
+                  {thread.lastMessage.message}
+                </p>
               </div>
-              <div className="flex-shrink-0 text-xs text-gray-500">
-                {formatDate(contact.created_at)}
+
+              {/* Time */}
+              <div className="flex-shrink-0 text-right">
+                <p className="text-xs text-gray-400">{formatDate(thread.lastMessage.created_at)}</p>
+                {thread.unreadCount > 0 && (
+                  <div className="w-2 h-2 bg-[#267275] rounded-full ml-auto mt-1" />
+                )}
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>

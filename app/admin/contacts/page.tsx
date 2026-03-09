@@ -1,19 +1,79 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import DataTable, { Column, Action } from '@/components/admin/DataTable';
+import React, { useState, useEffect, useRef } from 'react';
 import { contactService } from '@/lib/services/contactService';
 import { ContactSubmission } from '@/types/admin';
-import { formatDate, formatDateTime } from '@/lib/utils';
+import { formatDateTime } from '@/lib/utils';
+
+interface Thread {
+  email: string;
+  name: string;
+  messages: ContactSubmission[];
+  unreadCount: number;
+  lastMessage: ContactSubmission;
+}
+
+function buildThreads(contacts: ContactSubmission[]): Thread[] {
+  const map = new Map<string, ContactSubmission[]>();
+  for (const c of contacts) {
+    const key = c.email.toLowerCase();
+    if (!map.has(key)) map.set(key, []);
+    map.get(key)!.push(c);
+  }
+  const threads: Thread[] = [];
+  map.forEach((messages) => {
+    const sorted = [...messages].sort(
+      (a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+    );
+    threads.push({
+      email: sorted[0].email.toLowerCase(),
+      name: sorted[sorted.length - 1].name,
+      messages: sorted,
+      unreadCount: sorted.filter((m) => !m.is_read).length,
+      lastMessage: sorted[sorted.length - 1],
+    });
+  });
+  return threads.sort(
+    (a, b) =>
+      new Date(b.lastMessage.created_at).getTime() -
+      new Date(a.lastMessage.created_at).getTime()
+  );
+}
+
+function timeAgo(dateStr: string): string {
+  const diff = Date.now() - new Date(dateStr).getTime();
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return 'just now';
+  if (mins < 60) return `${mins}m`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs}h`;
+  const days = Math.floor(hrs / 24);
+  if (days < 7) return `${days}d`;
+  return new Date(dateStr).toLocaleDateString();
+}
+
+function Avatar({ name, size = 'md' }: { name: string; size?: 'sm' | 'md' | 'lg' }) {
+  const sizeClass = size === 'sm' ? 'w-8 h-8 text-xs' : size === 'lg' ? 'w-12 h-12 text-lg' : 'w-10 h-10 text-sm';
+  return (
+    <div className={`${sizeClass} rounded-full bg-[#267275] flex items-center justify-center text-white font-semibold flex-shrink-0`}>
+      {name.charAt(0).toUpperCase()}
+    </div>
+  );
+}
 
 export default function ContactsPage() {
   const [contacts, setContacts] = useState<ContactSubmission[]>([]);
-  const [selectedContact, setSelectedContact] = useState<ContactSubmission | null>(null);
   const [loading, setLoading] = useState(true);
+  const [selectedEmail, setSelectedEmail] = useState<string | null>(null);
+  const [search, setSearch] = useState('');
+  const [deletingId, setDeletingId] = useState<string | number | null>(null);
+  const bottomRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => { fetchContacts(); }, []);
 
   useEffect(() => {
-    fetchContacts();
-  }, []);
+    setTimeout(() => bottomRef.current?.scrollIntoView({ behavior: 'smooth' }), 100);
+  }, [selectedEmail]);
 
   const fetchContacts = async () => {
     try {
@@ -27,192 +87,239 @@ export default function ContactsPage() {
   };
 
   const handleMarkAsRead = async (contact: ContactSubmission) => {
+    if (contact.is_read) return;
     try {
       await contactService.markAsRead(String(contact.id));
-      setContacts((prev) =>
-        prev.map((c) => (c.id === contact.id ? { ...c, is_read: true } : c))
-      );
+      setContacts((prev) => prev.map((c) => c.id === contact.id ? { ...c, is_read: true } : c));
     } catch (error) {
       console.error('Failed to mark as read:', error);
     }
   };
 
   const handleDelete = async (contact: ContactSubmission) => {
-    if (confirm(`Are you sure you want to delete the message from ${contact.name}?`)) {
-      try {
-        await contactService.delete(String(contact.id));
-        setContacts((prev) => prev.filter((c) => c.id !== contact.id));
-      } catch (error) {
-        console.error('Failed to delete contact:', error);
-      }
+    if (!confirm(`Delete this message from ${contact.name}?`)) return;
+    setDeletingId(contact.id);
+    try {
+      await contactService.delete(String(contact.id));
+      setContacts((prev) => prev.filter((c) => c.id !== contact.id));
+    } catch (error) {
+      console.error('Failed to delete:', error);
+    } finally {
+      setDeletingId(null);
     }
   };
 
-  const handleView = (contact: ContactSubmission) => {
-    setSelectedContact(contact);
-    handleMarkAsRead(contact);
+  const handleSelectThread = (thread: Thread) => {
+    setSelectedEmail(thread.email);
+    thread.messages.forEach(handleMarkAsRead);
   };
-
-  const columns: Column[] = [
-    {
-      key: 'is_read',
-      label: 'Status',
-      render: (value: boolean) => (
-        <span
-          className={`px-2 py-1 rounded-full text-xs font-medium ${
-            value
-              ? 'bg-green-100 text-green-700'
-              : 'bg-red-100 text-red-700'
-          }`}
-        >
-          {value ? 'Read' : 'Unread'}
-        </span>
-      ),
-    },
-    {
-      key: 'name',
-      label: 'Name',
-    },
-    {
-      key: 'email',
-      label: 'Email',
-    },
-    {
-      key: 'message',
-      label: 'Message',
-      render: (value: string) => (
-        <span className="block truncate max-w-xs">{value}</span>
-      ),
-    },
-    {
-      key: 'created_at',
-      label: 'Date',
-      render: (value: string) => formatDate(value),
-    },
-  ];
-
-  const actions: Action[] = [
-    {
-      label: 'View',
-      onClick: handleView,
-      variant: 'primary',
-    },
-    {
-      label: 'Delete',
-      onClick: handleDelete,
-      variant: 'danger',
-    },
-  ];
-
-  const unreadCount = contacts.filter((c) => !c.is_read).length;
 
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="text-gray-500">Loading...</div>
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-8 h-8 border-2 border-[#267275] border-t-transparent rounded-full animate-spin" />
+          <p className="text-gray-400 text-sm">Loading inbox...</p>
+        </div>
       </div>
     );
   }
 
+  const threads = buildThreads(contacts);
+  const totalUnread = contacts.filter((c) => !c.is_read).length;
+  const filteredThreads = threads.filter(
+    (t) =>
+      t.name.toLowerCase().includes(search.toLowerCase()) ||
+      t.email.toLowerCase().includes(search.toLowerCase())
+  );
+  const selectedThread = threads.find((t) => t.email === selectedEmail) || null;
+
   return (
-    <div>
-      <div className="flex items-center justify-between mb-6">
+    <div className="flex flex-col h-[calc(100vh-120px)]">
+
+      {/* ── Page Header ── */}
+      <div className="flex items-center justify-between mb-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-800">Contact Submissions</h1>
-          <p className="text-gray-500 mt-1">Manage all contact form submissions</p>
+          <h1 className="text-2xl font-bold text-gray-800">Inbox</h1>
+          <p className="text-gray-400 text-sm mt-0.5">{threads.length} conversations</p>
         </div>
-        <span className="px-4 py-2 bg-red-100 text-red-600 rounded-lg text-sm font-medium">
-          {unreadCount} Unread
-        </span>
+        {totalUnread > 0 && (
+          <span className="px-3 py-1.5 bg-red-50 text-red-500 border border-red-200 rounded-full text-sm font-medium">
+            {totalUnread} unread
+          </span>
+        )}
       </div>
 
-      <DataTable
-        columns={columns}
-        data={contacts}
-        actions={actions}
-        emptyMessage="No contact submissions yet"
-      />
+      {/* ── Main Panel ── */}
+      <div className="flex flex-1 rounded-2xl border border-gray-200 overflow-hidden shadow-sm bg-white min-h-0">
 
-      {selectedContact && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
-          onClick={() => setSelectedContact(null)}
-        >
-          <div
-            className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="p-6 border-b border-gray-200 flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-gray-800">Contact Details</h2>
-              <button
-                onClick={() => setSelectedContact(null)}
-                className="text-gray-500 hover:text-gray-700"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
+        {/* ══ LEFT: Thread List ══ */}
+        <div className="w-80 flex-shrink-0 flex flex-col border-r border-gray-100">
 
-            <div className="p-6 space-y-4">
-              <div>
-                <label className="text-sm font-medium text-gray-500">Name</label>
-                <p className="text-lg text-gray-800">{selectedContact.name}</p>
-              </div>
-
-              <div>
-                <label className="text-sm font-medium text-gray-500">Email</label>
-                <p className="text-lg text-gray-800">{selectedContact.email}</p>
-              </div>
-
-              <div>
-                <label className="text-sm font-medium text-gray-500">Message</label>
-                <p className="text-gray-800 whitespace-pre-wrap">{selectedContact.message}</p>
-              </div>
-
-              <div>
-                <label className="text-sm font-medium text-gray-500">Submitted</label>
-                <p className="text-gray-800">
-                  {formatDateTime(selectedContact.created_at)}
-                </p>
-              </div>
-
-              <div>
-                <label className="text-sm font-medium text-gray-500">Status</label>
-                <p>
-                  <span
-                    className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${
-                      selectedContact.is_read
-                        ? 'bg-green-100 text-green-700'
-                        : 'bg-red-100 text-red-700'
-                    }`}
-                  >
-                    {selectedContact.is_read ? 'Read' : 'Unread'}
-                  </span>
-                </p>
-              </div>
-            </div>
-
-            <div className="p-6 border-t border-gray-200 flex gap-3 justify-end">
-              <button
-                onClick={() => setSelectedContact(null)}
-                className="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg"
-              >
-                Close
-              </button>
-              <button
-                onClick={() => {
-                  handleDelete(selectedContact);
-                  setSelectedContact(null);
-                }}
-                className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg"
-              >
-                Delete
-              </button>
+          {/* Search */}
+          <div className="p-3 border-b border-gray-100">
+            <div className="flex items-center gap-2 bg-gray-50 rounded-xl px-3 py-2">
+              <svg className="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input
+                type="text"
+                placeholder="Search..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="bg-transparent text-sm text-gray-700 placeholder:text-gray-400 outline-none w-full"
+              />
             </div>
           </div>
+
+          {/* Thread items */}
+          <div className="flex-1 overflow-y-auto">
+            {filteredThreads.length === 0 && (
+              <div className="flex flex-col items-center justify-center h-40 gap-2">
+                <svg className="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                </svg>
+                <p className="text-gray-400 text-sm">No conversations</p>
+              </div>
+            )}
+            {filteredThreads.map((thread) => {
+              const isSelected = selectedEmail === thread.email;
+              return (
+                <button
+                  key={thread.email}
+                  onClick={() => handleSelectThread(thread)}
+                  className={`w-full text-left px-4 py-3.5 flex items-start gap-3 transition-colors relative ${
+                    isSelected
+                      ? 'bg-[#267275]/10'
+                      : 'hover:bg-gray-50'
+                  }`}
+                >
+                  {isSelected && (
+                    <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-[#267275]" />
+                  )}
+                  <Avatar name={thread.name} />
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between mb-0.5">
+                      <span className={`text-sm truncate ${thread.unreadCount > 0 ? 'font-semibold text-gray-900' : 'font-medium text-gray-700'}`}>
+                        {thread.name}
+                      </span>
+                      <span className="text-[11px] text-gray-400 flex-shrink-0 ml-2">
+                        {timeAgo(thread.lastMessage.created_at)}
+                      </span>
+                    </div>
+                    <p className="text-xs text-gray-400 truncate mb-1">{thread.email}</p>
+                    <div className="flex items-center justify-between gap-2">
+                      <p className={`text-xs truncate flex-1 ${thread.unreadCount > 0 ? 'text-gray-700' : 'text-gray-400'}`}>
+                        {thread.lastMessage.message}
+                      </p>
+                      {thread.unreadCount > 0 && (
+                        <span className="flex-shrink-0 w-5 h-5 bg-[#267275] text-white text-[10px] rounded-full flex items-center justify-center font-semibold">
+                          {thread.unreadCount}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
         </div>
-      )}
+
+        {/* ══ RIGHT: Chat View ══ */}
+        <div className="flex-1 flex flex-col min-w-0">
+          {!selectedThread ? (
+            <div className="flex-1 flex flex-col items-center justify-center gap-3 text-center px-8">
+              <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center">
+                <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+              </div>
+              <div>
+                <p className="text-gray-700 font-medium">Select a conversation</p>
+                <p className="text-gray-400 text-sm mt-1">Choose from your inbox to read messages</p>
+              </div>
+            </div>
+          ) : (
+            <>
+              {/* Chat Header */}
+              <div className="px-5 py-3.5 border-b border-gray-100 flex items-center gap-3 bg-white">
+                <Avatar name={selectedThread.name} />
+                <div className="flex-1 min-w-0">
+                  <p className="font-semibold text-gray-900 text-sm">{selectedThread.name}</p>
+                  <p className="text-xs text-gray-400 truncate">{selectedThread.email}</p>
+                </div>
+                <span className="text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded-full">
+                  {selectedThread.messages.length} message{selectedThread.messages.length !== 1 ? 's' : ''}
+                </span>
+              </div>
+
+              {/* Messages */}
+              <div className="flex-1 overflow-y-auto px-5 py-5 space-y-5 bg-gray-50">
+                {selectedThread.messages.map((msg, i) => {
+                  const isFirst = i === 0;
+                  const prevMsg = i > 0 ? selectedThread.messages[i - 1] : null;
+                  const showDate =
+                    isFirst ||
+                    new Date(msg.created_at).toDateString() !==
+                      new Date(prevMsg!.created_at).toDateString();
+
+                  return (
+                    <React.Fragment key={msg.id}>
+                      {showDate && (
+                        <div className="flex items-center gap-3 my-2">
+                          <div className="flex-1 h-px bg-gray-200" />
+                          <span className="text-xs text-gray-400 px-2">
+                            {new Date(msg.created_at).toLocaleDateString('en-US', {
+                              weekday: 'short', month: 'short', day: 'numeric',
+                            })}
+                          </span>
+                          <div className="flex-1 h-px bg-gray-200" />
+                        </div>
+                      )}
+
+                      <div className="flex items-start gap-3 group">
+                        <Avatar name={msg.name} size="sm" />
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-baseline gap-2 mb-1.5">
+                            <span className="text-xs font-semibold text-gray-700">{msg.name}</span>
+                            <span className="text-[11px] text-gray-400">{formatDateTime(msg.created_at)}</span>
+                            {!msg.is_read && (
+                              <span className="text-[10px] bg-[#267275]/10 text-[#267275] px-1.5 py-0.5 rounded-full font-medium">
+                                New
+                              </span>
+                            )}
+                          </div>
+                          <div className="relative">
+                            <div className="bg-white border border-gray-200 rounded-2xl rounded-tl-none px-4 py-3 text-sm text-gray-800 whitespace-pre-wrap shadow-sm max-w-2xl leading-relaxed">
+                              {msg.message}
+                            </div>
+                            <button
+                              onClick={() => handleDelete(msg)}
+                              disabled={deletingId === msg.id}
+                              className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-md hover:bg-red-600 disabled:opacity-50"
+                              title="Delete message"
+                            >
+                              {deletingId === msg.id ? (
+                                <div className="w-3 h-3 border border-white border-t-transparent rounded-full animate-spin" />
+                              ) : (
+                                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                              )}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </React.Fragment>
+                  );
+                })}
+                <div ref={bottomRef} />
+              </div>
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

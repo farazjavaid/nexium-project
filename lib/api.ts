@@ -68,6 +68,11 @@ class ApiClient {
       const data = await response.json();
 
       if (!response.ok) {
+        if (response.status === 401) {
+          localStorage.removeItem(TOKEN_STORAGE_KEY);
+          window.location.href = '/login';
+          return {} as ApiResponse<T>;
+        }
         const error = new Error(data.message || 'API request failed') as any;
         error.errors = data.errors;
         error.data = data;
