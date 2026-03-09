@@ -67,10 +67,10 @@ export default function ContactUs() {
 
             <div className="relative z-10 max-w-7xl ml-auto px-6 lg:ps-10 lg:pe-25 pt-6 lg:pt-20">
               <div className="mb-6 lg:mb-[138px]">
-                <h1 className="text-[40px] sm:text-[50px] md:text-[60px] lg:text-[75px] leading-[1.1] sm:leading-[1.05] text-white uppercase font-light mb-0">
+                <h1 className="text-[40px] sm:text-[50px] md:text-[60px] lg:text-[75px] leading-[1.1] sm:leading-[1.05] text-white uppercase font-light mb-0 font-montserrat">
                   Got an Idea?
                 </h1>
-                <h1 className="text-[40px] sm:text-[50px] md:text-[60px] lg:text-[75px] leading-[1.1] sm:leading-[1.05] text-white uppercase font-light">
+                <h1 className="text-[40px] sm:text-[50px] md:text-[60px] lg:text-[75px] leading-[1.1] sm:leading-[1.05] text-white uppercase font-light font-montserrat">
                   Let&apos;s Talk
                 </h1>
               </div>
@@ -120,7 +120,7 @@ export default function ContactUs() {
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   onFocus={() => setFocused("name")}
                   onBlur={() => setFocused(null)}
-                  className="w-full text-[18px] sm:text-[20px] lg:text-[22px] bg-transparent border-none outline-none placeholder:text-[#777] transition-colors duration-300"
+                  className="w-full text-[18px] sm:text-[20px] lg:text-[22px] bg-transparent border-none outline-none placeholder:text-[#777] transition-colors duration-300 font-montserrat"
                   style={{ color: focused === "name" ? "#267275" : "#353638" }}
                   required
                 />
@@ -139,7 +139,7 @@ export default function ContactUs() {
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   onFocus={() => setFocused("email")}
                   onBlur={() => setFocused(null)}
-                  className="w-full text-[18px] sm:text-[20px] lg:text-[22px] bg-transparent border-none outline-none placeholder:text-[#777] transition-colors duration-300"
+                  className="w-full text-[18px] sm:text-[20px] lg:text-[22px] bg-transparent border-none outline-none placeholder:text-[#777] transition-colors duration-300 font-montserrat"
                   style={{ color: focused === "email" ? "#267275" : "#353638" }}
                   required
                 />
@@ -158,7 +158,7 @@ export default function ContactUs() {
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   onFocus={() => setFocused("message")}
                   onBlur={() => setFocused(null)}
-                  className="w-full text-[18px] sm:text-[20px] lg:text-[22px] bg-transparent border-none outline-none resize-none placeholder:text-[#777] transition-colors duration-300"
+                  className="w-full text-[18px] sm:text-[20px] lg:text-[22px] bg-transparent border-none outline-none resize-none placeholder:text-[#777] transition-colors duration-300 font-montserrat"
                   style={{ color: focused === "message" ? "#267275" : "#353638" }}
                   required
                 />
@@ -167,7 +167,7 @@ export default function ContactUs() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-[#267275] text-white h-[48px] sm:h-[52px] lg:h-[56px] flex items-center justify-center text-[12px] sm:text-[13px] lg:text-[14px] tracking-[3px] sm:tracking-[3.6px] lg:tracking-[4.2px] uppercase font-bold hover:bg-[#1f5e61] transition-colors font-josefin disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-[#267275] text-white h-[48px] sm:h-[52px] lg:h-[56px] flex items-center justify-center text-[12px] sm:text-[13px] lg:text-[14px] tracking-[3px] sm:tracking-[3.6px] lg:tracking-[4.2px] uppercase font-bold hover:bg-[#1f5e61] transition-colors font-montserrat disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? 'SENDING...' : 'SEND'}
               </button>

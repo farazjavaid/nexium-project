@@ -63,7 +63,7 @@ export default function PremiumSolutionsSection({
             PREMIUM<br />SOLUTIONS
           </h2>
           <p
-            className="text-[#727272] max-w-[718px] mx-auto pt-6 lg:pt-12"
+            className="text-[#727272] max-w-[718px] mx-auto pt-6 lg:pt-12 font-montserrat"
             style={{ fontSize: "17px", lineHeight: "30px" }}
           >
             We deliver premium websites and digital systems using trusted technology like Shopify, WordPress, Laravel, and React.js. From front-end design to backend architecture, we develop solutions that align with your goals and scale with your business.
@@ -106,7 +106,7 @@ export default function PremiumSolutionsSection({
               </h3>
 
               <p
-                className="text-[#727272] max-w-[320px] relative z-10"
+                className="text-[#727272] max-w-[320px] relative z-10 font-montserrat"
                 style={{ fontSize: "19px", lineHeight: "30px" }}
               >
                 {service.description}

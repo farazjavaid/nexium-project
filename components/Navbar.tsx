@@ -78,7 +78,7 @@ export default function Navbar({ isScrolled = false, whiteMenu = false }: Navbar
                   <Link
                     href={item.href}
                     onClick={toggleMenu}
-                    className={`block text-4xl lg:text-6xl font-light uppercase tracking-tight hover:text-[#267275] transition-colors duration-300 ${
+                    className={`block text-4xl lg:text-6xl font-light uppercase tracking-tight hover:text-[#267275] transition-colors duration-300 font-montserrat ${
                       pathname === item.href
                         ? "text-[#267275]"
                         : "text-[#353638]"
@@ -100,36 +100,36 @@ export default function Navbar({ isScrolled = false, whiteMenu = false }: Navbar
             >
               <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
                 <div>
-                  <p className="text-[#727272] text-sm uppercase tracking-wider mb-3">
+                  <p className="text-[#727272] text-sm uppercase tracking-wider mb-3 font-montserrat">
                     Email
                   </p>
                   <a
                     href="mailto:support@nexiumtrio.com"
-                    className="text-[#353638] text-lg lg:text-xl hover:text-[#267275] transition-colors duration-300"
+                    className="text-[#353638] text-lg lg:text-xl hover:text-[#267275] transition-colors duration-300 font-montserrat"
                   >
                     support@nexiumtrio.com
                   </a>
                 </div>
                 <div>
-                  <p className="text-[#727272] text-sm uppercase tracking-wider mb-3">
+                  <p className="text-[#727272] text-sm uppercase tracking-wider mb-3 font-montserrat">
                     Follow Us
                   </p>
                   <div className="flex gap-6">
                     <a
                       href="#"
-                      className="text-[#353638] text-lg lg:text-xl hover:text-[#267275] transition-colors duration-300"
+                      className="text-[#353638] text-lg lg:text-xl hover:text-[#267275] transition-colors duration-300 font-montserrat"
                     >
                       LinkedIn
                     </a>
                     <a
                       href="#"
-                      className="text-[#353638] text-lg lg:text-xl hover:text-[#267275] transition-colors duration-300"
+                      className="text-[#353638] text-lg lg:text-xl hover:text-[#267275] transition-colors duration-300 font-montserrat"
                     >
                       Instagram
                     </a>
                     <a
                       href="#"
-                      className="text-[#353638] text-lg lg:text-xl hover:text-[#267275] transition-colors duration-300"
+                      className="text-[#353638] text-lg lg:text-xl hover:text-[#267275] transition-colors duration-300 font-montserrat"
                     >
                       Facebook
                     </a>

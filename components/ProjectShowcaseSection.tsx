@@ -62,7 +62,7 @@ export default function ProjectShowcaseSection({
     <section className="w-full py-16 lg:py-24 px-4 lg:px-20 bg-white">
       <div className="max-w-7xl mx-auto">
         <motion.h2
-          className="text-[28px] lg:text-[48px] leading-tight lg:leading-[60px] tracking-[0.5px] text-[#252525] font-light text-center mb-12 lg:mb-16 uppercase"
+          className="text-[28px] lg:text-[48px] leading-tight lg:leading-[60px] tracking-[0.5px] text-[#252525] font-light text-center mb-12 lg:mb-16 uppercase font-montserrat"
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -109,13 +109,13 @@ export default function ProjectShowcaseSection({
 
                   <div className="mt-auto">
                     <p
-                      className="text-white uppercase mb-1"
+                      className="text-white uppercase mb-1 font-montserrat"
                       style={{ fontSize: "12px", letterSpacing: "1.5px", fontWeight: 600 }}
                     >
                       {project.category}
                     </p>
                     <h3
-                      className="text-white"
+                      className="text-white font-montserrat"
                       style={{ fontSize: "20px", fontWeight: 600, letterSpacing: "-0.4px" }}
                     >
                       {project.title}

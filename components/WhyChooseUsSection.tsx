@@ -110,7 +110,7 @@ export default function WhyChooseUsSection({
                 </motion.span>
                 <div className="flex-1">
                   <h3
-                    className={`font-bold uppercase mb-4 ${feature.isDark ? "text-white" : "text-white"}`}
+                    className={`font-bold uppercase mb-4 font-montserrat ${feature.isDark ? "text-white" : "text-white"}`}
                     style={{ fontSize: "21px", letterSpacing: "-0.36px" }}
                   >
                     {feature.title}

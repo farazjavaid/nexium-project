@@ -71,7 +71,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <p className="text-white/60 font-montserrat text-[14px] tracking-[-0.32px]">© 2025 Copyright - Nexium Trio | License</p>
+          <p className="text-white/60 font-montserrat text-[14px] tracking-[-0.32px]">© 2026 Copyright - Nexium Trio | License</p>
         </div>
 
         <div className="mt-[-20] flex justify-center relative">
