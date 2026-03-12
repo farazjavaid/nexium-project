@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import SectionGrid from "@/components/SectionGrid";
 
 interface Testimonial {
   quote: string;
@@ -75,8 +76,9 @@ export default function TestimonialSection({
   }
 
   return (
-    <section className="w-full py-16 lg:py-24 px-4 lg:px-20 bg-white">
-      <div className="max-w-7xl mx-auto">
+    <section className="w-full py-16 lg:py-24 px-4 lg:px-20 bg-white relative">
+      <SectionGrid />
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="max-w-[1228px] mx-auto relative">
           <span
             className="text-[#353638] absolute top-0 left-0 pb-4 font-montserrat"

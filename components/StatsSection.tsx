@@ -76,7 +76,7 @@ export default function StatsSection({ stats = defaultStats }: StatsSectionProps
   }, []);
 
   return (
-    <section className="w-full pb-16 lg:pb-20 px-4 lg:px-20 bg-white">
+    <section className="w-full pb-16 lg:pb-20 px-4 lg:px-20">
       <div className="max-w-7xl mx-auto">
         <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {stats.map((stat, index) => (

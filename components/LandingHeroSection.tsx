@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import AnimatedTriangles from "./AnimatedTriangles";
 import AnimatedTrianglesSlide3 from "./AnimatedTrianglesSlide3";
 import Slide4Decorations from "./Slide4Decorations";
+import SectionGrid from "./SectionGrid";
 
 
 interface LandingHeroSectionProps {
@@ -68,6 +69,8 @@ export default function LandingHeroSection({
       }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
     >
+      <SectionGrid />
+
       <motion.div
         animate={{ opacity: currentSlide === 0 ? 1 : 0 }}
         transition={{ duration: 0.3 }}

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import SectionGrid from "@/components/SectionGrid";
 
 interface Service {
   title: string;
@@ -54,6 +55,7 @@ export default function PremiumSolutionsSection({
 }: PremiumSolutionsSectionProps) {
   return (
     <section className="w-full py-16 lg:py-24 px-4 lg:px-20 relative" style={{ backgroundColor: "#eee" }}>
+      <SectionGrid />
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="mb-12 lg:mb-20">
           <p className="text-[22px] leading-tight lg:leading-[67px] text-[#353638] font-montserrat font-semibold mb-2">

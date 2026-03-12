@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import SectionGrid from "./SectionGrid";
 
 interface HeroSectionProps {
   heading: string;
@@ -34,6 +35,7 @@ export default function HeroSection({
 
   return (
     <section className="w-full min-h-screen flex items-center px-6 lg:px-20 bg-white relative overflow-hidden">
+      <SectionGrid />
       {showBackgroundImage && (
         <div className="absolute left-[-5%] lg:left-[13%] top-[15%] w-[300px] h-[300px] lg:w-[474px] lg:h-[474px] pointer-events-none z-0 rotate-[17deg]">
           <Image

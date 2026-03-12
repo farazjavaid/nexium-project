@@ -11,6 +11,7 @@ import ClientLogosSection from "@/components/ClientLogosSection";
 import { clientService } from "@/lib/services/clientService";
 import { Client } from "@/types/admin";
 import { getStorageUrl } from "@/lib/api";
+import SectionGrid from "@/components/SectionGrid";
 
 const imgPolygon3 = "/images/about-us/polygon-3.svg";
 const imgRectangle702 = "/images/about-us/rectangle-702.png";
@@ -59,8 +60,9 @@ export default function AboutUs() {
         title="Our Clients"
       />
 
-      <section className="w-full py-16 lg:py-24 px-4 lg:px-20 bg-white">
-        <div className="max-w-7xl mx-auto">
+      <section className="w-full py-16 lg:py-24 px-4 lg:px-20 bg-white relative">
+        <SectionGrid />
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
               <h2 className="text-3xl lg:text-5xl text-[#353638] font-montserrat font-normal uppercase mb-6">
@@ -77,6 +79,7 @@ export default function AboutUs() {
       </section>
 
       <section className="w-full py-16 lg:py-24 px-4 lg:px-20 bg-[#1f1f1f] relative overflow-hidden">
+        <SectionGrid />
         <div className="hidden lg:block absolute right-[-60px] bottom-[-60px] w-[350px] h-[300px] opacity-20 pointer-events-none">
           <Image alt="" src={imgRectangle702} fill className="object-contain" />
         </div>
@@ -114,8 +117,9 @@ export default function AboutUs() {
         </div>
       </section>
 
-      <section className="w-full py-16 lg:py-24 px-4 lg:px-20 bg-[#eee]">
-        <div className="max-w-7xl mx-auto">
+      <section className="w-full py-16 lg:py-24 px-4 lg:px-20 bg-[#eee] relative">
+        <SectionGrid />
+        <div className="max-w-7xl mx-auto relative z-10">
           <h2 className="text-[32px] lg:text-[78px] leading-tight lg:leading-[80px] text-[#252525] font-montserrat font-light uppercase mb-12 lg:mb-20">
             Why clients<br />choose us
           </h2>

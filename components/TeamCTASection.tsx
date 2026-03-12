@@ -1,5 +1,7 @@
 "use client";
 
+import SectionGrid from "@/components/SectionGrid";
+
 interface TeamCTASectionProps {
   topText?: string;
   heading: string;
@@ -24,8 +26,9 @@ export default function TeamCTASection({
   };
 
   return (
-    <section className="w-full py-16 lg:py-20 px-4 lg:px-20 bg-[#fff]">
-      <div className="max-w-7xl mx-auto">
+    <section className="w-full py-16 lg:py-20 px-4 lg:px-20 bg-[#fff] relative">
+      <SectionGrid />
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between bg-[#267275] gap-8 px-8 lg:px-16 py-12 lg:py-16">
           <div className="text-center lg:text-left w-full lg:w-auto">
             {topText && (
@@ -37,7 +40,7 @@ export default function TeamCTASection({
           </div>
           <button
             onClick={handleClick}
-            className="w-full lg:w-auto bg-white text-[#267275] px-8 py-4 text-sm tracking-widest uppercase font-montserrat font-bold hover:bg-gray-100 transition-colors whitespace-nowrap"
+            className="w-full lg:w-auto bg-white text-[#267275] px-8 py-4 text-sm tracking-widest uppercase font-montserrat font-bold hover:bg-[#267275] hover:text-white hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] transition-all duration-300 whitespace-nowrap border-2 border-white"
           >
             {buttonText}
           </button>

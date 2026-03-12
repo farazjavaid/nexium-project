@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import SectionGrid from "@/components/SectionGrid";
 
 interface Project {
   title: string;
@@ -59,8 +60,9 @@ export default function ProjectShowcaseSection({
   projects = defaultProjects,
 }: ProjectShowcaseSectionProps) {
   return (
-    <section className="w-full py-16 lg:py-24 px-4 lg:px-20 bg-white">
-      <div className="max-w-7xl mx-auto">
+    <section className="w-full py-16 lg:py-24 px-4 lg:px-20 bg-white relative">
+      <SectionGrid />
+      <div className="max-w-7xl mx-auto relative z-10">
         <motion.h2
           className="text-[28px] lg:text-[48px] leading-tight lg:leading-[60px] tracking-[0.5px] text-[#252525] font-light text-center mb-12 lg:mb-16 uppercase font-montserrat"
           initial={{ opacity: 0, y: 25 }}

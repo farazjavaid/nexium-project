@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import SectionGrid from "@/components/SectionGrid";
 
 interface Feature {
   number: string;
@@ -70,6 +71,7 @@ export default function WhyChooseUsSection({
 }: WhyChooseUsSectionProps) {
   return (
     <section className="w-full py-16 lg:py-24 px-4 lg:px-20 bg-[#1f1f1f] relative overflow-hidden">
+      <SectionGrid />
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.h2
           className="text-[38px] lg:text-[78px] leading-tight lg:leading-[80px] tracking-[0.5px] text-white mb-12 lg:mb-16 font-montserrat font-normal uppercase"

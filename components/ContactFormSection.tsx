@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { contactService } from "@/lib/services/contactService";
+import SectionGrid from "@/components/SectionGrid";
 
 export default function ContactFormSection() {
   const [loading, setLoading] = useState(false);
@@ -42,8 +43,9 @@ export default function ContactFormSection() {
   };
 
   return (
-    <section className="w-full pt-8 lg:pt-28 pb-16 lg:pb-0 mb-0 lg:mb-[-140px] px-4 lg:px-20 bg-[#e7e5e5]">
-      <div className="max-w-7xl mx-auto">
+    <section className="w-full pt-8 lg:pt-28 pb-16 lg:pb-0 mb-0 lg:mb-[-140px] px-4 lg:px-20 bg-[#e7e5e5] relative">
+      <SectionGrid />
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-20">
           <div className="flex flex-col justify-start pt-2 lg:pt-4">
             <p className="text-[#353638] font-montserrat font-normal text-[22px] lg:text-[28px] mb-4 lg:mb-10">Collaborate with us</p>

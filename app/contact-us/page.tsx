@@ -5,6 +5,7 @@ import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { contactService } from "@/lib/services/contactService";
+import SectionGrid from "@/components/SectionGrid";
 
 const imgGrid = "/images/contact-us/grid.png";
 const imgRectangleBg = "/images/contact-us/rectangle-bg.png";
@@ -45,7 +46,8 @@ export default function ContactUs() {
       <Header transparent whiteLogo />
 
       <section className="relative w-full overflow-hidden font-montserrat">
-        <div className="flex flex-col lg:flex-row">
+        <SectionGrid />
+        <div className="flex flex-col lg:flex-row relative z-10">
           <div className="relative w-full lg:w-1/2 bg-[#267275] lg:min-h-[713px] flex flex-col justify-center py-8 lg:py-20">
             <div className="absolute inset-0 pointer-events-none opacity-30">
               <Image

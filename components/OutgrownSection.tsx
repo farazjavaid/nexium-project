@@ -3,10 +3,12 @@
 import Image from "next/image";
 import StatsSection from "@/components/StatsSection";
 import { motion } from "framer-motion";
+import SectionGrid from "@/components/SectionGrid";
 
 export default function OutgrownSection() {
   return (
     <section className="w-full py-16 lg:py-24 px-4 lg:px-20 bg-white relative overflow-hidden">
+      <SectionGrid />
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="mb-12 lg:mb-16 flex flex-col lg:flex-row lg:items-center lg:gap-22 relative">
           <h2

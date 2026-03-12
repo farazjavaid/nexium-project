@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import SectionGrid from "@/components/SectionGrid";
 
 interface ServiceItem {
   title: string;
@@ -88,13 +89,14 @@ export default function WhatWeBuildSection({ services }: WhatWeBuildSectionProps
   };
 
   return (
-    <section className="w-full py-16 lg:py-24 bg-[#eee]">
-      <div className="max-w-7xl mx-auto px-4 lg:px-20">
+    <section className="w-full py-16 lg:py-24 bg-[#eee] relative">
+      <SectionGrid />
+      <div className="max-w-7xl mx-auto px-4 lg:px-20 relative z-10">
         <h2 className="text-[32px] sm:text-[40px] lg:text-[78px] leading-tight lg:leading-[80px] text-[#252525] font-montserrat font-light uppercase mb-12 lg:mb-20">
           What we<br />build
         </h2>
       </div>
-      <div className="max-w-7xl mx-auto px-6 lg:px-20">
+      <div className="max-w-7xl mx-auto px-6 lg:px-20 relative z-10">
         <div className="relative">
           <div className="overflow-hidden opacity-0 h-0" ref={emblaRef}>
             <div className="flex">

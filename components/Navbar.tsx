@@ -31,13 +31,26 @@ export default function Navbar({ isScrolled = false, whiteMenu = false }: Navbar
 
   const hamburgerColor = isScrolled ? "bg-[#353638]" : (whiteMenu ? "bg-white" : "bg-[#353638]");
 
+  const contactBtnStyle = isScrolled
+    ? "border-[#353638] text-[#353638] hover:bg-[#353638] hover:text-white"
+    : whiteMenu
+    ? "border-white text-white hover:bg-white hover:text-[#353638]"
+    : "border-[#353638] text-[#353638] hover:bg-[#353638] hover:text-white";
+
   return (
     <>
-      <button
-        onClick={toggleMenu}
-        className="flex flex-col gap-1.5 w-8 h-6 justify-center items-center relative z-[70] focus:outline-none focus-visible:outline-none"
-        aria-label="Toggle menu"
-      >
+      <div className="flex items-center gap-4 relative z-[70]">
+        <Link
+          href="/contact-us"
+          className={`hidden sm:inline-block px-5 py-2 border font-montserrat text-sm font-medium tracking-wide transition-all duration-300 ${contactBtnStyle}`}
+        >
+          Contact Us
+        </Link>
+        <button
+          onClick={toggleMenu}
+          className="flex flex-col gap-1.5 w-8 h-6 justify-center items-center focus:outline-none focus-visible:outline-none"
+          aria-label="Toggle menu"
+        >
         <span
           className={`w-full h-0.5 ${hamburgerColor} transition-all duration-300 ease-in-out ${
             isOpen ? "rotate-45 translate-y-2" : ""
@@ -53,7 +66,8 @@ export default function Navbar({ isScrolled = false, whiteMenu = false }: Navbar
             isOpen ? "-rotate-45 -translate-y-2" : ""
           }`}
         ></span>
-      </button>
+        </button>
+      </div>
 
       <div
         className={`fixed top-[69px] lg:top-[101px] left-0 right-0 bottom-0 bg-white z-50 transition-all duration-500 ease-in-out ${
